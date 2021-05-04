@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
 import auth from './AuthReducer'
-import notify from '../actions/notifyReducer'
+import alert from '../actions/alertReducer'
 
 export default combineReducers({
 
     auth,
-    notify
+    alert
 
 })

@@ -35,3 +35,7 @@ code {
 
 /* --- AUTH */
 @import url("./styles/auth.css");
+
+
+/* --- loading */
+@import url("./styles/loading.css");
