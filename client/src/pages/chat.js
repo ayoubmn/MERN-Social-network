@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { login } from "../redux/actions/AuthAction";
-// import { useDispatch } from "react-redux";
+import React /*, { useState }*/ from "react";
+import FriendSide from "../components/chat/FriendSide";
+//import ConvSide from "../components/chat/ConvSide";
 
 const Chat = () => {
-  //   const initialState = { email: "", password: "" };
-  //   const [userData, setUserData] = useState(initialState);
-  //   const { email, password } = userData;
-  //   const [typePass, setTypePass] = useState(false);
-
-  //   const dispatch = useDispatch();
-
   return (
-    <div className="chat_page">
-      <h1>welcome to messanger</h1>
+    <div className="chat d-flex">
+      <div className="col-md-4 border-right px-0">
+        <FriendSide />
+      </div>
+      <div className="col-md-8">
+        <div className="d-flex justify-content-center align-items-center flex-column h-100">
+          <h4>Inbox</h4>
+        </div>
+      </div>
     </div>
   );
 };

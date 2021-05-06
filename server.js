@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const db = require("./key").mongoURI;
-const http = require("http");
 const SocketServer = require("./SocketServer");
 
 const app = express();
@@ -15,20 +14,9 @@ app.use(cookieParser());
 
 // //Routes
 app.use("/api", require("./routes/authRouter"));
+app.use("/friends", require("./routes/api/friendshipRouter"));
+app.use("/usr", require("./routes/api/usersRouter"));
 
-//socketio
-const socketio = require("socket.io");
-const server = http.createServer(app);
-const io = socketio(server);
-
-const users = [];
-
-io.on("connection", (socket) => {
-  console.log(socket.id + "  new connection");
-  console.log("done");
-
-  SocketServer(socket);
-});
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -39,4 +27,27 @@ mongoose
   .catch((err) => console.log(err));
 
 const port = process.env.PORT || 5000;
+
+//socketio
+//const socketio = require("socket.io");
+const server = require("http").createServer(app);
+
+// server.listen(3000, () => {
+//   console.log("listening on *:3000");
+// });
+// const socketCORSConfig = {
+//   cors: {
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST"],
+//   },
+// };
+const io = require("socket.io")(server);
+const users = [];
+
+io.on("connection", (socket) => {
+  SocketServer(socket);
+  console.log(socket.id + "  new connection");
+});
+io.listen(8000);
+
 app.listen(port, () => console.log(`Server started on port ${port}`));
