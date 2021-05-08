@@ -33,9 +33,21 @@ code {
   margin: auto;
 }
 
+img {
+  object-fit: cover;
+
+}
+.avatar {
+  width : 40px;
+  height: 40px;
+  border-radius : 50%; 
+
+}
+
 /* --- AUTH */
 @import url("./styles/auth.css");
 
 
 /* --- loading */
 @import url("./styles/loading.css");
+
