@@ -1,5 +1,6 @@
 export const GLOBALTYPES = {
-    AUTH:"AUTH",
-    ALERT:"ALERT",
-    THEME:'THEME'
-}
+  SOCKET: "SOCKET",
+  AUTH: "AUTH",
+  THEME: "THEME",
+  ALERT: "ALERT",
+};

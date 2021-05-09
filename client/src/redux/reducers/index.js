@@ -1,13 +1,14 @@
-import {combineReducers} from 'redux'
-import auth from './AuthReducer'
-import alert from '../actions/alertReducer'
-import theme from '../reducers/themeReducer'
-
+import { combineReducers } from "redux";
+import auth from "./AuthReducer";
+import socket from "./socketReducer";
+import alert from "../actions/alertReducer";
+import message from "./messageReducer";
+import theme from "../reducers/themeReducer";
 
 export default combineReducers({
-
-    auth,
-    alert,
-    theme
-
-})
+  auth,
+  socket,
+  alert,
+  theme,
+  message,
+});
