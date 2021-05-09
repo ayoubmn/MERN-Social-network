@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import ConvCard from "./ConvCard";
-import { useSelector /*, useDispatch */ } from "react-redux";
+import UserCard from "./UserCard";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { addUser } from "../../redux/actions/messageAction";
+import { useParams } from "react-router-dom";
+import { getConversations } from "../../redux/actions/messageAction";
 
 const FriendSide = () => {
-  const { auth } = useSelector((state) => state);
-  //const dispatch = useDispatch();
+  const { auth, message } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
 
   //   const handleSearch=async(e)=>{
   // e.preventDefault()
@@ -25,26 +31,45 @@ const FriendSide = () => {
         },
       })
       .then((data) => {
-        if (url === "friends/following") {
+        if (url === "/friends/following") {
           followersIDs = data.data;
         } else {
           var dt = [...data.data];
-          console.log(dt);
           setFollowers(dt);
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error /*.response.data*/);
       });
     return res;
   };
   const asyncFun = async () => {
-    await getData(`friends/following`, myID, auth.token);
-    await getData(`usr/users`, followersIDs, auth.token);
+    await getData(`/friends/following`, myID, auth.token);
+    await getData(`/usr/users`, followersIDs, auth.token);
   };
   useEffect(() => {
     asyncFun();
   });
+
+  useEffect(() => {
+    if (message.firstLoad) return;
+    dispatch(getConversations(auth));
+  }, [dispatch, auth, message.firstLoad, id, message.users.text]);
+
+  const hanldeAddUser = (user) => {
+    //   setSearch("");
+    //  setSearchUsers([]);
+    dispatch(addUser({ user, message }));
+    return history.push(`/message/${user._id}`);
+  };
+
+  //const [search, setSearch] = useState("");
+  //const [searchUsers, setSearchUsers] = useState([]);
+
+  const isActive = (user) => {
+    if (id === user._id) return "active";
+    return "";
+  };
   return (
     <>
       <form className="message_header" /*onClick={handleSearch}*/>
@@ -56,17 +81,30 @@ const FriendSide = () => {
         />
         <button type="submit">Search</button>
       </form>
+
       <div className="message_chat_list">
         {typeof followers === "object" ? (
           <>
             {Object.keys(followers).map((i) => (
-              <div>
-                <ConvCard user={followers[i]} />
+              <div
+                key={followers[i]._id}
+                className={`message_user ${isActive(followers[i])}`}
+                onClick={() => hanldeAddUser(followers[i])}
+              >
+                {message.users ? (
+                  <>
+                    <UserCard user={followers[i]} />
+                  </>
+                ) : (
+                  <>
+                    <UserCard user={message.users} />
+                  </>
+                )}
               </div>
             ))}
           </>
         ) : (
-          <></>
+          <>test</>
         )}
       </div>
     </>

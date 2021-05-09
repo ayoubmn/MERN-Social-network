@@ -9,7 +9,7 @@ const friendshipCtrl = {
 
       const friends = await Users.find({
         _id: myID,
-        followers: friendToFollow._id,
+        following: friendToFollow._id,
       });
       if (friends.length > 0)
         return res.status(500).json({ msg: "user already followed" });

@@ -16,6 +16,7 @@ app.use(cookieParser());
 app.use("/api", require("./routes/authRouter"));
 app.use("/friends", require("./routes/api/friendshipRouter"));
 app.use("/usr", require("./routes/api/usersRouter"));
+app.use("/api", require("./routes/api/messageRouter"));
 
 mongoose
   .connect(db, {
