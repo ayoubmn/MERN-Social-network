@@ -1,7 +1,12 @@
 import React from "react";
 
 const MsgDisplay = ({ user, msg }) => {
-  const date = msg.createdAt.slice(0, 19).replace("T", " ");
+  let date = "";
+  try {
+    date = msg.createdAt.slice(0, 19).replace("T", " ");
+  } catch (error) {
+    console.log("no data found");
+  }
   return (
     <>
       <div className="chat_title">

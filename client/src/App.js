@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import { GLOBALTYPES } from "./redux/actions/globalTypes";
 import SocketClient from "./SocketClient";
+import Header from "./components/Header";
 
 function App() {
   const { auth } = useSelector((state) => state);
@@ -33,9 +34,11 @@ function App() {
       <Alert />
       <div className="App">
         <div className="main">
+          {auth.token && <Header />}
           {auth.token && <SocketClient />}
 
           <Route exact path="/" component={auth.token ? Home : Login} />
+
           <Route
             exact
             path="/:page"

@@ -106,7 +106,7 @@ const authCtrl = {
         async (err, result) => {
           if (err) return res.status(400).json({ msg: "Please login now." });
 
-          console.log("generateAccesToken " + result);
+          //console.log("generateAccesToken " + result);
           const user = await Users.findById(result.id)
             .select("-password")
             .populate("followers following", "-password");

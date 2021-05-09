@@ -4,11 +4,11 @@ import ConvSide from "../../components/chat/ConvSide";
 
 const Conversation = () => {
   return (
-    <div className="chat d-flex">
+    <div className="messageC d-flex">
       <div className="col-md-4 border-right px-0">
         <FriendSide />
       </div>
-      <div className="col-md-8">
+      <div className="col-md-8 px-0">
         <ConvSide />
       </div>
     </div>

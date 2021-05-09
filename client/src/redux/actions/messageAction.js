@@ -1,4 +1,4 @@
-import { postDataAPI, getDataAPI } from "../../utils/fetchData";
+import { postDataAPI } from "../../utils/fetchData";
 export const MESS_TYPES = {
   ADD_USER: "ADD_USER",
   ADD_MESSAGE: "ADD_MESSAGE",
@@ -14,6 +14,8 @@ export const addUser = ({ user, message }) => (dispatch) => {
 
 export const addMessage = ({ msg, auth, socket }) => async (dispatch) => {
   dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
+
+  socket.emit("addMessage", msg);
   try {
     await postDataAPI("message", msg, auth.token);
   } catch (error) {

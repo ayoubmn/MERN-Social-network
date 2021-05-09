@@ -3,7 +3,11 @@ import UserCard from "./UserCard";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { addUser } from "../../redux/actions/messageAction";
+import {
+  addUser,
+  getMessages,
+  MESS_TYPES,
+} from "../../redux/actions/messageAction";
 import { useParams } from "react-router-dom";
 import { getConversations } from "../../redux/actions/messageAction";
 
@@ -49,7 +53,17 @@ const FriendSide = () => {
   };
   useEffect(() => {
     asyncFun();
-  });
+  }, []);
+
+  useEffect(() => {
+    if (id) {
+      const getMessagesData = async () => {
+        dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: { message: [] } });
+        await dispatch(getMessages({ auth, id }));
+      };
+      getMessagesData();
+    }
+  }, [id, dispatch, auth]);
 
   useEffect(() => {
     if (message.firstLoad) return;
@@ -93,11 +107,11 @@ const FriendSide = () => {
               >
                 {message.users ? (
                   <>
-                    <UserCard user={followers[i]} />
+                    <UserCard user={message.users[i]} />
                   </>
                 ) : (
                   <>
-                    <UserCard user={message.users} />
+                    <UserCard user={followers[i]} />
                   </>
                 )}
               </div>

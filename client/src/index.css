@@ -32,6 +32,15 @@ code {
   margin: auto;
 }
 
+img {
+  object-fit: cover;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
 /* --- AUTH */
 @import url("./styles/auth.css");
 
@@ -40,3 +49,7 @@ code {
 
 /* --- chat */
 @import url("./styles/chat.css");
+
+.messageC {
+  height: calc(100vh - 150px);
+}

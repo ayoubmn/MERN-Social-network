@@ -1,6 +1,6 @@
-.chat {
+.message {
   width: 100%;
-  height: calc(100vh-100px);
+  height: calc(100vh - 100px);
   border: 1px solid #ddd;
   margin-top: 15px;
   border-radius: 3px;
@@ -28,7 +28,7 @@
 
 .message_chat_list {
   width: 100%;
-  height: calc(100%-60px);
+  height: calc(100% - 60px);
   overflow-y: auto;
 }
 
@@ -87,9 +87,9 @@
 
 .chat_container {
   width: 100%;
-  height: calc(100%-110px);
+  height: calc(100% - 110px);
+  overflow-y: auto;
   padding: 0 10px;
-  overflow: auto;
 }
 
 .chat_display {

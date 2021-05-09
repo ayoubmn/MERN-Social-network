@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import UserCard from "./UserCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import MsgDisplay from "./MsgDisplay";
-import { addMessage, getMessages } from "../../redux/actions/messageAction";
+import {
+  addMessage,
+  getMessages,
+  MESS_TYPES,
+} from "../../redux/actions/messageAction";
 
 const ConvSide = () => {
   const { auth, message, socket } = useSelector((state) => state);
@@ -12,6 +16,7 @@ const ConvSide = () => {
   const [text, setText] = useState("");
 
   const { id } = useParams();
+  const refDisplay = useRef();
 
   useEffect(() => {
     const newUser = message.users.find((user) => user._id === id);
@@ -31,13 +36,25 @@ const ConvSide = () => {
     };
     setText("");
     dispatch(addMessage({ msg, auth, socket }));
+    if (refDisplay.current) {
+      refDisplay.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    }
   };
-
   //get messages api
   useEffect(() => {
     if (id) {
       const getMessagesData = async () => {
+        dispatch({ type: MESS_TYPES.GET_MESSAGES, payload: { messages: [] } });
         await dispatch(getMessages({ auth, id }));
+        if (refDisplay.current) {
+          refDisplay.current.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+          });
+        }
       };
       getMessagesData();
     }
@@ -51,7 +68,7 @@ const ConvSide = () => {
         </UserCard>
       </div>
       <div className="chat_container">
-        <div className="chat_display">
+        <div className="chat_display" ref={refDisplay}>
           {message.data.map((msg, index) => (
             <div key={index}>
               {msg.sender !== auth.user._id && (

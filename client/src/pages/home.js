@@ -2,9 +2,7 @@ import React from "react";
 const Home = () => {
   return (
     <div>
-      <a href="/chat">
-        <button type="button">Chat</button>
-      </a>
+      <h2>Welcome</h2>
     </div>
   );
 };
