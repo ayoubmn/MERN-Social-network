@@ -5,9 +5,7 @@ export const getDataAPI = async (url, token) => {
     .get(`/api/${url}`, {
       headers: { Authorization: token },
     })
-    .catch((error) => {
-      console.log(error.response.data);
-    });
+    
   return res;
 };
 export const postDataAPI = async (url, post, token) => {
@@ -15,9 +13,6 @@ export const postDataAPI = async (url, post, token) => {
     .post(`/api/${url}`, post, {
       headers: { Authorization: token },
     })
-    .catch((error) => {
-      console.log(error.response.data);
-    });
   return res;
 };
 export const putDataAPI = async (url, post, token) => {

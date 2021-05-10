@@ -1,17 +1,19 @@
 import React from "react";
+import {useSelector} from 'react-redux'
 //import { Link } from "react-router-dom";
 const UserCard = ({ user, border, handleClose }) => {
   // const handleCloseAll = () => {
   //   if (handleClose) handleClose();
   // };
+  const {theme,auth} = useSelector(state=>state)
   return (
     <div className={`d-flex p-2 align-item-center ${border}`}>
-      {user.avatar ? (
+      {auth.user.avatar ? (
         <>
           <img
-            src={user.avatar}
+            src={auth.user.avatar}
             alt=""
-            style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+            style={{filter : `${theme ? 'invert(1)' : 'invert(0)'}`, width: "40px", height: "40px", borderRadius: "50%" }}
           />
         </>
       ) : (
@@ -23,14 +25,14 @@ const UserCard = ({ user, border, handleClose }) => {
         </>
       )}
       <div className="ml-1" style={{ transform: "translateY(-3px)" }}>
-        <span className="d-block">{user.username}</span>
+        <span className="d-block">{auth.user.username}</span>
         <small style={{ opacity: 0.7 }}>
-          {user.text ? (
+          {auth.user.text ? (
             <>
-              <div>{user.text.slice(0, 25)}</div>
+              <div>{auth.user.text.slice(0, 25)}</div>
             </>
           ) : (
-            user.fullname
+            auth.user.fullname
           )}
         </small>
       </div>

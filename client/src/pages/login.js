@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { login } from "../redux/actions/AuthAction";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react"
+import { Link, useHistory } from "react-router-dom"
+import { login } from "../redux/actions/AuthAction"
+import { useDispatch, useSelector } from "react-redux"
 
 const Login = () => {
-  const initialState = { email: "", password: "" };
-  const [userData, setUserData] = useState(initialState);
-  const { email, password } = userData;
-  const [typePass, setTypePass] = useState(false);
+  const initialState = { email: "", password: "" }
+  const [userData, setUserData] = useState(initialState)
+  const { email, password } = userData
+  const [typePass, setTypePass] = useState(false)
 
-  const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
-  const history = useHistory();
+  const dispatch = useDispatch()
+  const { auth } = useSelector((state) => state)
+  const history = useHistory()
 
   useEffect(() => {
-    if (auth.token) history.push("/");
-  }, [auth.token, history]);
+    if (auth.token) history.push("/")
+  }, [auth.token, history])
 
   const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("login " + userData);
-    dispatch(login(userData));
-  };
+    const { name, value } = e.target
+    setUserData({ ...userData, [name]: value })
+  }
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(userData)
+    dispatch(login(userData))
+  }
   return (
+
     <div className="auth_page">
       <form onSubmit={handleSubmit}>
         <h3 className="text-uppercase text-center mb-4">Garfield Network</h3>
@@ -78,7 +79,8 @@ const Login = () => {
         </p>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+
+export default Login

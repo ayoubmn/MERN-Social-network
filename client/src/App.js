@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PageRender from "./PageRender";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import Register from "./pages/register";
+
 import Alert from "./components/alert/Alert";
 import { refreshToken } from "../src/redux/actions/AuthAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -32,23 +34,17 @@ function App() {
   return (
     <Router>
       <Alert />
+      <input type="checkbox" id="theme"/>
       <div className="App">
         <div className="main">
           {auth.token && <Header />}
           {auth.token && <SocketClient />}
 
-          <Route exact path="/" component={auth.token ? Home : Login} />
+          <Route exact path="/" component={auth.token ? Home:Login}/>
+          <Route exact path="/:page" component={PageRender}/>
+          <Route exact path="/:page/:id" component={PageRender}/>
 
-          <Route
-            exact
-            path="/:page"
-            component={auth.token ? PageRender : Login}
-          />
-          <Route
-            exact
-            path="/:page/:id"
-            component={auth.token ? PageRender : Login}
-          />
+
         </div>
       </div>
     </Router>
