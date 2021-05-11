@@ -48,7 +48,7 @@ const users = [];
 
 io.on("connection", (socket) => {
   SocketServer(socket);
-  console.log(socket.id + "  new connection");
+  //console.log(socket.id + "  new connection");
 });
 io.listen(8000);
 

@@ -105,15 +105,7 @@ const FriendSide = () => {
                 className={`message_user ${isActive(followers[i])}`}
                 onClick={() => hanldeAddUser(followers[i])}
               >
-                {message.users ? (
-                  <>
-                    <UserCard user={message.users[i]} />
-                  </>
-                ) : (
-                  <>
-                    <UserCard user={followers[i]} />
-                  </>
-                )}
+                <UserCard user={followers[i]} />
               </div>
             ))}
           </>

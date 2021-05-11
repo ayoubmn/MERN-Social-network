@@ -4,8 +4,7 @@ const Users = require("../models/userModel");
 const usersCtrl = {
   user: async (req, res) => {
     try {
-      const { ID } = req.body;
-
+      const { ID } = req.body.data;
       const user = await Users.findOne({ _id: ID });
 
       res.json(user);

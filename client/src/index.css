@@ -50,6 +50,9 @@ img {
 /* --- chat */
 @import url("./styles/chat.css");
 
+/* --- profile */
+@import url("./styles/profile.css");
+
 .messageC {
   height: calc(100vh - 150px);
 }

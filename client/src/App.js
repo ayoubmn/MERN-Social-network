@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PageRender from "./PageRender";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import Register from "./pages/register";
+
 import Alert from "./components/alert/Alert";
 import { refreshToken } from "../src/redux/actions/AuthAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -38,6 +40,7 @@ function App() {
           {auth.token && <SocketClient />}
 
           <Route exact path="/" component={auth.token ? Home : Login} />
+          <Route exact path="/register" component={Register} />
 
           <Route
             exact

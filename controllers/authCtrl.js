@@ -84,7 +84,8 @@ const authCtrl = {
         },
       });
     } catch (err) {
-      return res.status(500).json({ msg: err.message });
+      console.log(err.message);
+      //return res.status(500).json({ msg: err.message });
     }
   },
   logout: async (req, res) => {
