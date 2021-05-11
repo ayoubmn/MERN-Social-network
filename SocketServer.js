@@ -8,6 +8,7 @@ const SocketServer = (socket) => {
     users = users.filter((user) => user.socketId !== socket.id);
     //console.log({ users });
   });
+  
 
   //chat
   socket.on("addMessage", (msg) => {

@@ -53,3 +53,6 @@ img {
 .messageC {
   height: calc(100vh - 150px);
 }
+
+/* --- chatgroup */
+@import url("./styles/chatgroup.css");
