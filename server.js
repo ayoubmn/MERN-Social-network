@@ -9,8 +9,8 @@ const SocketServer = require("./SocketServer");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-app.use(cookieParser());
+/* app.use(cors());
+ */app.use(cookieParser());
 
 // //Routes
 app.use("/api", require("./routes/authRouter"));

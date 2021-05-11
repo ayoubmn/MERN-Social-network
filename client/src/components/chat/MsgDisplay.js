@@ -1,7 +1,10 @@
 import React from "react";
+import {useSelector} from 'react-redux'
+
 
 const MsgDisplay = ({ user, msg }) => {
   let date = "";
+  const {theme} = useSelector(state=>state)
   try {
     date = msg.createdAt.slice(0, 19).replace("T", " ");
   } catch (error) {
@@ -13,7 +16,7 @@ const MsgDisplay = ({ user, msg }) => {
         <img
           src={user.avatar}
           alt=""
-          style={{ width: "20px", height: "20px", borderRadius: "50%" }}
+          style={{ filter : `${theme ? 'invert(1)' : 'invert(0)'}` ,width: "20px", height: "20px", borderRadius: "50%" }}
         />
         <span>{user.username}</span>
       </div>

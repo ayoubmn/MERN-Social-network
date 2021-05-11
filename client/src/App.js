@@ -34,6 +34,7 @@ function App() {
   return (
     <Router>
       <Alert />
+      <input type="checkbox" id="theme" />
       <div className="App">
         <div className="main">
           {auth.token && <Header />}
