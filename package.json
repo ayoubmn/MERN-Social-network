@@ -8,7 +8,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"node roomserver\""
   },
   "author": "",
   "license": "ISC",
@@ -25,9 +25,11 @@
     "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.7",
+    "qs": "^6.10.1",
     "react-router-dom": "^5.2.0",
     "redux-devtools-extension": "^2.13.9",
-    "socket.io": "^4.0.1"
+    "socket.io": "npm:socket.io@^4.0.1",
+    "socket.io-old": "npm:socket.io@^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

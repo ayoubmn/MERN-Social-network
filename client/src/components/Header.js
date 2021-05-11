@@ -14,6 +14,7 @@ const Header = () => {
     { label: "Message", icon: "send", path: "/chat" },
     { label: "Discover", icon: "explore", path: "/discover" },
     { label: "Notify", icon: "favorite", path: "/notify" },
+    { label: "GroupChat", icon: "groups", path: "/chatgroup" },
   ];
   const { auth, theme } = useSelector((state) => state);
   const dispatch = useDispatch();

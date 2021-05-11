@@ -6,13 +6,13 @@ const cookieParser = require("cookie-parser");
 const db = require("./key").mongoURI;
 const SocketServer = require("./SocketServer");
 
+
 const app = express();
 
 app.use(express.json());
-/* app.use(cors());
- */app.use(cookieParser());
-
-// //Routes
+app.use(cors());
+ app.use(cookieParser());
+ //Routes
 app.use("/api", require("./routes/authRouter"));
 app.use("/friends", require("./routes/api/friendshipRouter"));
 app.use("/usr", require("./routes/api/usersRouter"));
