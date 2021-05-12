@@ -29,7 +29,7 @@
     "react-router-dom": "^5.2.0",
     "redux-devtools-extension": "^2.13.9",
     "socket.io": "npm:socket.io@^4.0.1",
-    "socket.io-old": "npm:socket.io@^2.3.0"
+    "socket.io-old": "npm:socket.io@^2.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

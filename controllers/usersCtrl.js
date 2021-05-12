@@ -36,13 +36,15 @@ const usersCtrl = {
     }
   },
 
-  allusers: async (req, res) => {
+  searchUser: async (req, res) => {
     try {
-      const { myID, email } = req.body;
+      const users = await Users.find({
+        username: { $regex: req.query.username },
+      })
+        .limit(10)
+        .select("fullname username avatar");
 
-      const friendToFollow = await Users.findOne({ email: email });
-
-      res.json({ msg: "user followed" });
+      res.json({ users });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

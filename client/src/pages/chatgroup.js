@@ -5,8 +5,7 @@ let socket;
 const CONNECTION_PORT = "http://localhost:3002";
 
 const Chatgroup = () => {
-
-    const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
 
@@ -16,7 +15,7 @@ const Chatgroup = () => {
 
   useEffect(() => {
     socket = io(CONNECTION_PORT);
-  }, [CONNECTION_PORT]);
+  }, []);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -52,9 +51,9 @@ const Chatgroup = () => {
     })
 
      */
-    
-    // Get username and room from URL
-/* const { username, room } = Qs.parse(window.location.search, {
+
+  // Get username and room from URL
+  /* const { username, room } = Qs.parse(window.location.search, {
     ignoreQueryPrefix: true,
   });
   console.log(username)
@@ -135,16 +134,16 @@ const Chatgroup = () => {
   }
    */
   //Prompt the user before leave chat room
-/*   document.getElementById('leave-btn').addEventListener('click', () => {
+  /*   document.getElementById('leave-btn').addEventListener('click', () => {
     const leaveRoom = window.confirm('Are you sure you want to leave the chatroom?');
     if (leaveRoom) {
       window.location = '../groupchat.js';
     } else {
     }
   }); */
-  
-    return (
-        <div className="Appa">
+
+  return (
+    <div className="Appa">
       {!loggedIn ? (
         <div className="logIn">
           <div className="inputs">
@@ -172,7 +171,7 @@ const Chatgroup = () => {
               return (
                 <div
                   className="messageContainer"
-                  id={val.author == userName ? "You" : "Other"}
+                  id={val.author === userName ? "You" : "Other"}
                 >
                   <div className="messageIndividual">
                     {val.author}: {val.message}
@@ -195,8 +194,7 @@ const Chatgroup = () => {
         </div>
       )}
     </div>
+  );
+};
 
-    )
-}
-
-export default Chatgroup
+export default Chatgroup;
