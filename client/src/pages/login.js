@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react'
-import { Link,useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory} from 'react-router-dom'
 import {login} from '../redux/actions/AuthAction'
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 const Login = () => {
     const initialState = { email: '', password: '' }
@@ -9,8 +9,8 @@ const Login = () => {
     const { email, password } = userData
     const [typePass,setTypePass] = useState(false)
 
+    const {auth} = useSelector(state => state)
     const dispatch = useDispatch()
-    const {auth} = useSelector(state=>state)
     const history = useHistory()
 
     useEffect(() =>{
