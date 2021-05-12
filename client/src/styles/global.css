@@ -67,4 +67,14 @@
     height: 100vh;
     overflow: hidden;
   }
+
+  /* --- chat */
+@import url("./chat.css");
+
+.messageC {
+  height: calc(100vh - 150px);
+}
+
+/* --- chatgroup */
+@import url("./chatgroup.css");
   
