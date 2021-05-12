@@ -1,5 +1,5 @@
 .search_form {
-  position: relative;
+  position: absolute;
 }
 
 .search_form #search {

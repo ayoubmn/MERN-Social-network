@@ -9,14 +9,23 @@ const SocketServer = require("./SocketServer");
 
 const app = express();
 
+
 app.use(express.json());
 app.use(cors());
- app.use(cookieParser());
- //Routes
-app.use("/api", require("./routes/authRouter"));
+app.use(cookieParser());
+
+//Routes 
+app.use('/api', require('./routes/authRouter'))
+app.use('/api', require('./routes/userRouter'))
+app.use('/api', require('./routes/postRouter'))
+app.use('/api', require('./routes/commentRouter'))
+
 app.use("/friends", require("./routes/api/friendshipRouter"));
 app.use("/usr", require("./routes/api/usersRouter"));
 app.use("/api", require("./routes/api/messageRouter"));
+
+
+
 
 mongoose
   .connect(db, {

@@ -41,13 +41,13 @@ const Search = () => {
     setUsers([]);
   };
   return (
-    <form className="search_form">
+    <form className="search_form" autoComplete="off">
       <input
         type="text"
         name="search"
         value={search}
         id="search"
-        autoComplete="false"
+        autoComplete="off"
         onChange={(e) =>
           setSearch(e.target.value.toLowerCase().replace(/ /g, ""))
         }
