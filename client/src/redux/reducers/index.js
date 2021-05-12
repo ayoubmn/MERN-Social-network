@@ -7,6 +7,8 @@ import profile from './profileReducer'
 import status from './statusReducer'
 import homePosts from './postReducer'
 import modal from './modalReducer'
+import socket from "./socketReducer";
+import message from "./messageReducer";
 
 
 export default combineReducers({
@@ -17,6 +19,9 @@ export default combineReducers({
     profile,
     status,
     homePosts,
-    modal
-
+    modal,
+    socket,
+    message
 })
+
+

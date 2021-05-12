@@ -12,7 +12,8 @@ export const login = (data) => async (dispatch) => {
 
         const res = await postDataAPI('login', data)
         dispatch({
-            type: GLOBALTYPES.AUTH, payload: {
+            type: GLOBALTYPES.AUTH,
+             payload: {
                 token: res.data.access_token,
                 user: res.data.user
 
