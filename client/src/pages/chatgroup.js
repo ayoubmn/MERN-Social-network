@@ -10,12 +10,11 @@ const Chatgroup = () => {
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
 
-  //
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-
   useEffect(() => {
     socket = io(CONNECTION_PORT);
+    // eslint-disable-next-line
   }, [CONNECTION_PORT]);
 
   useEffect(() => {
@@ -172,7 +171,7 @@ const Chatgroup = () => {
               return (
                 <div
                   className="messageContainer"
-                  id={val.author == userName ? "You" : "Other"}
+                  id={val.author === userName ? "You" : "Other"}
                 >
                   <div className="messageIndividual">
                     {val.author}: {val.message}
