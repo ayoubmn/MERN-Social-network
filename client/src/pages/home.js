@@ -4,6 +4,7 @@ import Status from "../components/home/Status";
 import { useSelector } from "react-redux";
 import LoadIcon from "../images/loading.gif";
 import Search from "../components/Search";
+import FriendRequests from "../components/FriendRequests";
 
 const Home = () => {
   const { homePosts } = useSelector((state) => state);
@@ -20,7 +21,10 @@ const Home = () => {
         )}
       </div>
       <div className="col-sm-3">
-        <Search />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Search className="item" />
+          <FriendRequests className="item" style={{ position: "relative" }} />
+        </div>
       </div>
     </div>
   );

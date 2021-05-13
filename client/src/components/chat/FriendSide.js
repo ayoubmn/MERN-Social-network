@@ -35,20 +35,20 @@ const FriendSide = () => {
         },
       })
       .then((data) => {
-        if (url === "/friends/following") {
-          followersIDs = data.data;
+        if (url === "/api/friends") {
+          followersIDs = data;
         } else {
           var dt = [...data.data];
           setFollowers(dt);
         }
       })
       .catch((error) => {
-        console.log(error /*.response.data*/);
+        console.log(error.response.data);
       });
     return res;
   };
   const asyncFun = async () => {
-    await getData(`/friends/following`, myID, auth.token);
+    await getData(`/api/friends`, myID, auth.token);
     await getData(`/usr/users`, followersIDs, auth.token);
   };
   useEffect(() => {
@@ -86,16 +86,6 @@ const FriendSide = () => {
   };
   return (
     <>
-      <form className="message_header" /*onClick={handleSearch}*/>
-        <input
-          type="text"
-          //value={search}
-          placeholder="Enter to Search ..."
-          //onChange={(e) => setSearch(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
-
       <div className="message_chat_list">
         {typeof followers === "object" ? (
           <>

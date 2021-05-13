@@ -1,0 +1,8 @@
+.friendRequests {
+  position: relative;
+  margin-top: 10%;
+}
+
+.friendRequests .request_header {
+  border: 1px;
+}

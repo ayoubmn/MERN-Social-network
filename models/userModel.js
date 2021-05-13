@@ -56,13 +56,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    followers: [
+    friendsrequest: [
       {
         type: mongoose.Types.ObjectId,
         ref: "user",
       },
     ],
-    following: [
+    friends: [
       {
         type: mongoose.Types.ObjectId,
         ref: "user",

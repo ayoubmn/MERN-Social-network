@@ -1,31 +1,49 @@
 const Users = require("../models/userModel");
 
 const friendshipCtrl = {
-  follow: async (req, res) => {
+  addFriend: async (req, res) => {
     try {
-      const { myID, email } = req.body;
-
-      const friendToFollow = await Users.findOne({ email: email });
+      const { myID, friendId } = req.body;
+      const friendToAdd = await Users.findOne({ _id: friendId });
 
       const friends = await Users.find({
         _id: myID,
-        following: friendToFollow._id,
+        friends: friendToAdd._id,
       });
       if (friends.length > 0)
-        return res.status(500).json({ msg: "user already followed" });
+        return res.status(500).json({ msg: "request already sent" });
 
       await Users.findOneAndUpdate(
-        { _id: friendToFollow._id },
+        { _id: friendToAdd._id },
         {
-          $push: { followers: myID },
+          $push: { friendsrequest: myID },
+        },
+        { new: true }
+      );
+
+      res.json({ msg: "request  sent" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  acceptFriend: async (req, res) => {
+    try {
+      const { myID, friendId } = req.body;
+
+      await Users.findOneAndUpdate(
+        { _id: myID },
+        {
+          $push: { friends: friendId },
+          $pull: { friendsrequest: friendId },
         },
         { new: true }
       );
 
       await Users.findOneAndUpdate(
-        { _id: myID },
+        { _id: friendId },
         {
-          $push: { following: friendToFollow._id },
+          $push: { friends: myID },
         },
         { new: true }
       );
@@ -36,21 +54,57 @@ const friendshipCtrl = {
     }
   },
 
-  following: async (req, res) => {
+  deleteFriend: async (req, res) => {
     try {
-      const { myID } = req.body.data;
-      const user = await Users.findOne({ _id: myID });
-      res.json(user.following);
+      const { myID, friendId } = req.body;
+
+      await Users.findOneAndUpdate(
+        { _id: myID },
+        {
+          $pull: { friends: friendId },
+        },
+        { new: true }
+      );
+
+      await Users.findOneAndUpdate(
+        { _id: friendId },
+        {
+          $pull: { friends: myID },
+        },
+        { new: true }
+      );
+
+      res.json({ msg: "friendship deleted" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
   },
-  // followers: async (req, res) => {
-  //   const { myID } = req.body;
+  deleteRequest: async (req, res) => {
+    try {
+      const { myID, friendId } = req.body;
 
-  //   const user = await Users.findOne({ _id: myID });
-  //   res.json(user.followers);
-  // },
+      await Users.findOneAndUpdate(
+        { _id: friendId },
+        {
+          $pull: { friendsrequest: myID },
+        },
+        { new: true }
+      );
+      res.json({ msg: "user followed" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  friends: async (req, res) => {
+    try {
+      const { myID } = req.body.data;
+      const user = await Users.findOne({ _id: myID });
+      res.json(user.friends);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = friendshipCtrl;

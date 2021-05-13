@@ -21,7 +21,7 @@ const usersCtrl = {
         const user = await Users.findOne({ _id: id });
         return user;
       };
-      const IDs = req.body.data;
+      const IDs = req.body.data.data;
       var nbr = Object.keys(IDs).length;
       IDs.map(async (id) => {
         var usr = await anAsyncFunction(id);

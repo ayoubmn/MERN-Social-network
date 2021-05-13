@@ -77,3 +77,6 @@ img {
 
 /* --- search */
 @import url("./search.css");
+
+/* --- friend request */
+@import url("./friendRequest.css");

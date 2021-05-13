@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PageRender from "./customRouter/PageRender";
-import PrivateRouter from "./customRouter/PrivateRouter";
+//import PrivateRouter from "./customRouter/PrivateRouter";
 
 import { refreshToken } from "../src/redux/actions/AuthAction";
 import { getPosts } from "./redux/actions/postAction";

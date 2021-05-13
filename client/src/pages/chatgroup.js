@@ -9,10 +9,8 @@ const Chatgroup = () => {
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
 
-  //
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-
   useEffect(() => {
     socket = io(CONNECTION_PORT);
   }, []);
