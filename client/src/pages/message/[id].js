@@ -5,10 +5,10 @@ import ConvSide from "../../components/chat/ConvSide";
 const Conversation = () => {
   return (
     <div className="messageC d-flex">
-      <div className="col-md-4 border-right px-0">
+      <div className="col-md-3 border-right px-0">
         <FriendSide />
       </div>
-      <div className="col-md-8 px-0">
+      <div className="col-md-9 px-0">
         <ConvSide />
       </div>
     </div>

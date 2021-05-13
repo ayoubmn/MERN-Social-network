@@ -10,7 +10,8 @@ const Home = () => {
   const { homePosts } = useSelector((state) => state);
   return (
     <div className="home row mx-0">
-      <div className="col-md-8">
+      <div className="col-sm-3">Group chat</div>
+      <div className="col-md-6">
         <Status />
         {homePosts.loading ? (
           <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
@@ -20,7 +21,7 @@ const Home = () => {
           <Posts />
         )}
       </div>
-      <div className="col-sm-3">
+      <div className="col-sm-2">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Search className="item" />
           <FriendRequests className="item" style={{ position: "relative" }} />

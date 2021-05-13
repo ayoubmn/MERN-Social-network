@@ -62,11 +62,11 @@ const ConvSide = () => {
 
   return (
     <>
-      <div className="message_header">
+      {/* <div className="message_header">
         <UserCard user={user}>
           <i className="fas fa-trash text-danger" />
         </UserCard>
-      </div>
+      </div> */}
       <div className="chat_container">
         <div className="chat_display" ref={refDisplay}>
           {message.data.map((msg, index) => (
