@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 //import { Link } from "react-router-dom";
 const UserCard = ({ user, border }) => {
-  const { message } = useSelector((state) => state);
+  const { message,theme } = useSelector((state) => state);
   let text = "";
   Object.keys(message.users).map((i) => {
     if (message.users[i]._id === user._id) {
@@ -17,7 +17,7 @@ const UserCard = ({ user, border }) => {
       <img
         src={user.avatar}
         alt=""
-        style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+        style={{ width: "40px", height: "40px", borderRadius: "50%" ,filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}
       />
       <div className="ml-1" style={{ transform: "translateY(-3px)" }}>
         <span className="d-block">{user.username}</span>
