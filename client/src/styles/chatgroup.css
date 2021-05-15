@@ -5,10 +5,10 @@ body {
   .Appa {
     display: grid;
     place-items: center;
-    height: 100vh;
+    height: 80vh;
   }
   
-  .logIn {
+/*   .logIn {
     width: 600px;
     height: 350px;
     border: 5px solid #0091ff;
@@ -18,8 +18,8 @@ body {
     align-items: center;
     flex-direction: column;
   }
-  
-  .logIn input{
+   */
+  /* .logIn input{
     margin: 10px;
     width: 200px;
     height: 40px;
@@ -27,18 +27,21 @@ body {
     background-color: transparent;
     padding-left: 10px;
     font-size: 15px;
-  }
-  
+  } */
+/*   
   .logIn input:focus{
     outline: none;
   }
-  
+   */
   .logIn button{
   
     width: 200px;
     height: 50px;
     border: none;
     background-color: #0091ff;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transform: translateX(50%);
     color: white;
     font-size: 16px;
     margin-top: 45px;
@@ -99,7 +102,7 @@ body {
   .messageContainer h1{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
+    font-weight: 100%;
     font-size: 17px;
   }
   
@@ -146,7 +149,10 @@ body {
       padding: 0;
   }
   
-  
+  .selectroom{
+    -ms-transform: translateX(50%);
+    transform: translateX(80%);
+  }
   ul {
       list-style: none;
   }
@@ -173,6 +179,15 @@ body {
       overflow: hidden;
   }
   
+  .welcome{
+    font-family: 'Josefin Slab', serif;
+
+  }
+  .welcometoroom{
+    font-family: 'Josefin Slab', serif;
+
+    color: red;
+  }
   .chat-header {
       background: var(--dark-color-a);
       color: #fff;
