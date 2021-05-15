@@ -52,17 +52,11 @@ img {
 /* ----------Home------------ */
 @import url("./home.css");
 
-/* ----------StausModal------------ */
+/* ----------StatusModal------------ */
 @import url("./status_modal.css");
 
 /* ----------Comments------------ */
 @import url("./comments.css");
-
-.mode {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
 
 /* --- chat */
 @import url("./chat.css");
@@ -75,3 +69,14 @@ img {
 
 /* --- friend request */
 @import url("./friendRequest.css");
+
+/* ----------Post Thumb------------ */
+@import url("./post_thumb.css");
+
+.mode {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+

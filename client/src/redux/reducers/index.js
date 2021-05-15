@@ -9,6 +9,7 @@ import homePosts from './postReducer'
 import modal from './modalReducer'
 import socket from "./socketReducer";
 import message from "./messageReducer";
+import detailPost from "./detailPostReducer";
 
 
 export default combineReducers({
@@ -21,7 +22,8 @@ export default combineReducers({
     homePosts,
     modal,
     socket,
-    message
+    message,
+    detailPost
 })
 
 

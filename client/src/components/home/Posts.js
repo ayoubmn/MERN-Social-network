@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux'
 import PostCard from '../PostCard'
 
 
-const Posts = () => {
+const Posts = ({auth, id, dispatch, profile}) => {
     const { homePosts} = useSelector(state => state)
     return(
         <div className="posts">
