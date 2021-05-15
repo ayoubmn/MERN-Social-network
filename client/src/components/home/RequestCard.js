@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { postDataAPI } from "../utils/fetchData";
+import { postDataAPI } from "../../utils/fetchData";
 const RequestCard = ({ user, border }) => {
   const [status, setStatus] = useState(false);
   const { auth } = useSelector((state) => state);
@@ -15,7 +15,7 @@ const RequestCard = ({ user, border }) => {
   };
   const handleDelete = async () => {
     await postDataAPI(
-      `/deleteRequest`,
+      `/refuse`,
       { myID: auth.user._id, friendId: user._id },
       auth.token
     );

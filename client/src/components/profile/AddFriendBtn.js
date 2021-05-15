@@ -1,18 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { postDataAPI } from "../utils/fetchData";
+import React, { useState /*, useEffect */ } from "react";
+import { postDataAPI } from "../../utils/fetchData";
 import { useSelector } from "react-redux";
 
 const AddFriendBtn = ({ user }) => {
-  const [friends, setFriends] = useState(false);
-  const [request, setRequest] = useState(false);
-
   const { auth } = useSelector((state) => state);
+
+  const [friends, setFriends] = useState(() => {
+    let value = false;
+    user.friends.forEach((id) => {
+      if (id === auth.user._id) {
+        value = true;
+      }
+    });
+    return value;
+  });
+  const [request, setRequest] = useState(() => {
+    let value = false;
+    user.friendsrequest.forEach((id) => {
+      if (id === auth.user._id) value = true;
+    });
+    return value;
+  });
 
   const handleAddFriend = async () => {
     setRequest(true);
-
     await postDataAPI(
-      `/add`,
+      `add`,
       { myID: auth.user._id, friendId: user._id },
       auth.token
     );
@@ -20,9 +33,8 @@ const AddFriendBtn = ({ user }) => {
 
   const handleDeleteFriend = async () => {
     setFriends(false);
-
     await postDataAPI(
-      `/deleteFriend`,
+      `deleteFriend`,
       { myID: auth.user._id, friendId: user._id },
       auth.token
     );
@@ -30,26 +42,17 @@ const AddFriendBtn = ({ user }) => {
 
   const handleDeleteRequest = async () => {
     setRequest(false);
-
     await postDataAPI(
-      `/deleteRequest`,
+      `deleteRequest`,
       { myID: auth.user._id, friendId: user._id },
       auth.token
     );
   };
 
-  useEffect(() => {
-    console.log("done");
-    user.friendsrequest.forEach((id) => {
-      if (id === auth.user._id) setRequest(true);
-    });
-    user.friends.forEach((id) => {
-      if (id === auth.user._id) setFriends(true);
-    });
-  }, [friends, request]);
-
-  console.log("friends " + friends);
-  console.log("request " + request);
+  // useEffect(() => {
+  //   console.log("friends " + friends);
+  //   console.log("request " + request);
+  // }, [friends, request]);
 
   return (
     <>

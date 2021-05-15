@@ -2,28 +2,35 @@ import React, { useState, useEffect } from "react";
 import RequestCard from "./RequestCard";
 import { useSelector } from "react-redux";
 import axios from "axios";
+
+/**
+ *
+ * TODO handle delete request
+ */
 const FriendRequests = () => {
   const { auth } = useSelector((state) => state);
 
   const [requests, setRequests] = useState({});
-  const asyncFun = async () => {
-    const data = { data: auth.user.friendsrequest };
-    const res = await axios
-      .post("/usr/users", {
-        data,
-        headers: {
-          Authorization: `${auth.token}`,
-          "Content-Type": "text/plain",
-        },
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-    setRequests(res.data);
-  };
+
   useEffect(() => {
+    const asyncFun = async () => {
+      const data = { data: auth.user.friendsrequest };
+      const res = await axios
+        .post("/usr/users", {
+          data,
+          headers: {
+            Authorization: `${auth.token}`,
+            "Content-Type": "text/plain",
+          },
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+
+      if (res) setRequests(res.data);
+    };
     asyncFun();
-  }, []);
+  }, [auth]);
 
   return (
     <div className="friendRequests">

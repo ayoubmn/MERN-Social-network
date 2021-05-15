@@ -1,27 +1,27 @@
-import React from 'react'
-import {Link, useLocation} from 'react-router-dom'
-import { useSelector, useDispatch} from 'react-redux'
-import { logout} from '../../redux/actions/AuthAction'
-import {GLOBALTYPES} from '../../redux/actions/globalTypes'
-import Avatar from '../Avatar'
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/AuthAction";
+import { GLOBALTYPES } from "../../redux/actions/globalTypes";
+import Avatar from "../Avatar";
 
 const Menu = () => {
-    const navLinks = [
-      { label: "Message", icon: "send", path: "/chat" },
-      { label: "Discover", icon: "explore", path: "/discover" },
-      { label: "Notify", icon: "favorite", path: "/notify" },
-      { label: "GroupChat", icon: "groups", path: "/chatgroup" },
-    ]
+  const navLinks = [
+    { label: "Message", icon: "send", path: "/chat" },
+    { label: "Discover", icon: "explore", path: "/discover" },
+    { label: "Notify", icon: "favorite", path: "/notify" },
+    { label: "GroupChat", icon: "groups", path: "/chatgroup" },
+  ];
 
-    const {auth, theme} = useSelector(state => state)
-    const dispatch = useDispatch()
-    const { pathname } = useLocation()
+  const { auth, theme } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
-    const isActive = (pn) => {
-        if(pn === pathname) return 'active'
-    }
-    return (
-      <div className="menu">
+  const isActive = (pn) => {
+    if (pn === pathname) return "active";
+  };
+  return (
+    <div className="menu">
       <ul className="navbar-nav flex-row">
         {navLinks.map((link, index) => (
           <li className={`nav-item px-2` + isActive(link.path)} key={index}>
@@ -40,7 +40,7 @@ const Menu = () => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <Avatar src={auth.user.avatar} size="medium-avatar"/>
+            <Avatar src={auth.user.avatar} size="medium-avatar" />
           </span>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
@@ -70,7 +70,7 @@ const Menu = () => {
         </li>
       </ul>
     </div>
-    );
-}
+  );
+};
 
-export default Menu
+export default Menu;

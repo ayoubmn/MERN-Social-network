@@ -8,10 +8,10 @@ const friendshipCtrl = {
 
       const friends = await Users.find({
         _id: myID,
-        friends: friendToAdd._id,
+        friendsrequest: friendToAdd._id,
       });
       if (friends.length > 0)
-        return res.status(500).json({ msg: "request already sent" });
+        return res.status(500).json({ msg: "user has sent you a request" });
 
       await Users.findOneAndUpdate(
         { _id: friendToAdd._id },
@@ -23,6 +23,7 @@ const friendshipCtrl = {
 
       res.json({ msg: "request  sent" });
     } catch (err) {
+      console.log(err);
       return res.status(500).json({ msg: err.message });
     }
   },
@@ -44,11 +45,28 @@ const friendshipCtrl = {
         { _id: friendId },
         {
           $push: { friends: myID },
+          $pull: { friendsrequest: myID },
         },
         { new: true }
       );
 
       res.json({ msg: "user followed" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  refuseFriend: async (req, res) => {
+    try {
+      const { myID, friendId } = req.body;
+
+      await Users.findOneAndUpdate(
+        { _id: myID },
+        {
+          $pull: { friendsrequest: friendId },
+        },
+        { new: true }
+      );
+      res.json({ msg: "user request refused" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

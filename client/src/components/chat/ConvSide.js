@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import UserCard from "./UserCard";
+//import UserCard from "./UserCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import MsgDisplay from "./MsgDisplay";

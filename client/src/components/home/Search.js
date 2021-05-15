@@ -2,40 +2,39 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import UserCard from "./chat/UserCard";
+import UserCard from "../chat/UserCard";
 const Search = () => {
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState([]);
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const getData = async (data, token) => {
-    const res = await axios
-      .post(`/usr/searchUser?username=${data}`, {
-        headers: {
-          Authorization: `${token}`,
-          "Content-Type": "text/plain",
-        },
-      })
-      .then((res) => {
-        setUsers(res.data.users);
-        console.log(users);
-      })
-      .catch((error) => {
-        dispatch({
-          type: "ALERT",
-          payload: { error: error.response.data.msg },
-        });
-      });
-    return res;
-  };
 
   useEffect(() => {
+    const getData = async (data, token) => {
+      const res = await axios
+        .post(`/usr/searchUser?username=${data}`, {
+          headers: {
+            Authorization: `${token}`,
+            "Content-Type": "text/plain",
+          },
+        })
+        .then((res) => {
+          setUsers(res.data.users);
+        })
+        .catch((error) => {
+          dispatch({
+            type: "ALERT",
+            payload: { error: error.response.data.msg },
+          });
+        });
+      return res;
+    };
     if (search) {
       getData(search, auth.token);
     } else {
       setUsers([]);
     }
-  }, [search, auth.token, dispatch]);
+  }, [search, auth, dispatch]);
   const close = () => {
     setSearch("");
     setUsers([]);

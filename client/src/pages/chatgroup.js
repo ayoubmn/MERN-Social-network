@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client-old";
-
+import { useSelector } from "react-redux";
 let socket;
 const CONNECTION_PORT = "http://localhost:3002";
 
-const Chatgroup = () => {
+const Chatgroup = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [room, setRoom] = useState("");
-  const [userName, setUserName] = useState("");
+  const { auth } = useSelector((state) => state);
+
+  const [room, setRoom] = useState(props.topic ? props.topic : "");
+  const [userName, setUserName] = useState(
+    props.topic ? auth.user.username : ""
+  );
 
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+
   useEffect(() => {
     socket = io(CONNECTION_PORT);
   }, []);
@@ -20,10 +25,15 @@ const Chatgroup = () => {
       setMessageList([...messageList, data]);
     });
   });
+
   const connectToRoom = () => {
     setLoggedIn(true);
     socket.emit("join_room", room);
   };
+
+  useEffect(() => {
+    if (props.topic) connectToRoom();
+  });
 
   const sendMessage = async () => {
     let messageContent = {
@@ -33,7 +43,6 @@ const Chatgroup = () => {
         message: message,
       },
     };
-
     await socket.emit("send_message", messageContent);
     setMessageList([...messageList, messageContent.content]);
     setMessage("");
@@ -170,6 +179,7 @@ const Chatgroup = () => {
                 <div
                   className="messageContainer"
                   id={val.author === userName ? "You" : "Other"}
+                  key={key}
                 >
                   <div className="messageIndividual">
                     {val.author}: {val.message}

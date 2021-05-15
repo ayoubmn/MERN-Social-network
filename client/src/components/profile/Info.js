@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Avatar from "../Avatar";
 import { getProfileUsers } from "../../redux/actions/profileAction";
 import EditProfile from "./EditProfile";
-import AddFriendBtn from "../AddFriendBtn";
+import AddFriendBtn from "./AddFriendBtn";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
 
 const Info = () => {
