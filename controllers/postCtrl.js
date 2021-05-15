@@ -1,4 +1,5 @@
 const Posts = require("../models/postModel");
+const Comments = require('../models/commentModel')
 
 const postCtrl = {
   createPost: async (req, res) => {
@@ -80,13 +81,11 @@ const postCtrl = {
       if (post.length > 0)
         return res.status(400).json({ msg: "You liked this already!" });
 
-      await Posts.findOneAndUpdate(
-        { _id: req.params.id },
-        {
+      const like = await Posts.findOneAndUpdate({ _id: req.params.id },{
           $push: { likes: req.user._id },
-        },
-        { new: true }
-      );
+        },{ new: true });
+      if(!like)return res.status(500).json({ msg: "Post not found" });
+
       res.json({ msg: "Liked a Post!" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
@@ -94,13 +93,14 @@ const postCtrl = {
   },
   unLikePost: async (req, res) => {
     try {
-      await Posts.findOneAndUpdate(
+      const like = await Posts.findOneAndUpdate(
         { _id: req.params.id },
         {
           $pull: { likes: req.user._id },
         },
         { new: true }
       );
+      if(!like) return res.status(500).json({ msg: "Post not found" });
       res.json({ msg: "unLiked a Post!" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
@@ -130,8 +130,21 @@ const postCtrl = {
         },
       });
 
+      if(!post) return res.status(500).json({ msg: "Post not found" });
+
       res.json({post})
 
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  deletePost: async (req, res) => {
+    try {
+      const post = await Posts.findOneAndDelete({_id: req.params.id, user: req.user._id})
+      await Comments.deleteMany({_id: {$in: post.comments}})
+
+      res.json({msg: 'Deleted Post!'})
+      
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
