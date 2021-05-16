@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "concurrently \"nodemon server.js\" \"node roomserver\" ",
+    "server": "concurrently \"nodemon server.js\" ",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"node roomserver\""
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "",
   "license": "ISC",
