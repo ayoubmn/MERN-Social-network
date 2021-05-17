@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import {GLOBALTYPES} from '../redux/actions/globalTypes'
+import cloudinary from '../utils/cloudinary'
 import {createPost, updatePost} from '../redux/actions/postAction'
 
 
@@ -13,6 +14,7 @@ const StatusModal = () => {
     const videoRef = useRef()
     const refCanvas= useRef()
     const [tracks, setTracks] = useState('')
+    let oldImages = status.images
 
     const handleChangeImages = e => {
         const files = [...e.target.files]
@@ -68,12 +70,28 @@ const StatusModal = () => {
             type: GLOBALTYPES.ALERT, payload: {error: "please add a photo"}
         })
             if(status.onEdit){
+                let imgOldUrl = images.filter(img => img.url) 
+                if(oldImages.length !== imgOldUrl.length){
+                    
+                    oldImages = oldImages.filter(val => !imgOldUrl.includes(val));
+                   console.log(oldImages)
+                   oldImages.map(item => {
+                        cloudinary.uploader.destroy(
+                            item.public_id,
+                            {
+                                invalidate: true
+                            }, 
+                            function(error, result) {
+                                console.log(result, error)
+                            }
+                        );
+                    })
+                }
                 dispatch(updatePost({content, images, auth, status}))
+
             }else{
                 dispatch(createPost({content, images, auth}))
             }
-
-        
 
         setContent('')
         setImages([])
@@ -84,6 +102,7 @@ const StatusModal = () => {
         if(status.onEdit){
             setContent(status.content)
             setImages(status.images)
+            console.log(oldImages)
         }
     },[status])
 
