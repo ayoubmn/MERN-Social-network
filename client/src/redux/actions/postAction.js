@@ -1,5 +1,6 @@
 import {GLOBALTYPES} from './globalTypes'
 import {imageUpload} from '../../utils/imageUpload'
+import cloudinary from '../../utils/cloudinary'
 import {postDataAPI, getDataAPI, patchDataAPI, deleteDataAPI} from '../../utils/fetchData'
 
 export const POST_TYPES = {
@@ -20,6 +21,7 @@ export const createPost=({content, images, auth}) => async (dispatch) => {
         const res= await postDataAPI('posts', {content,images: media}, auth.token)
         dispatch({type: GLOBALTYPES.ALERT, payload: {loading: false}})
         dispatch({ type:POST_TYPES.CREATE_POST, payload: {...res.data.newPost, user: auth.user}})
+        console.log(images.public_id)
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
@@ -116,6 +118,18 @@ export const getPost = ({detailPost, id, auth}) => async (dispatch) => {
 export const deletePost = ({post, auth}) => async (dispatch) => {
 dispatch({ type: POST_TYPES.DELETE_POST, payload: post})
         try {
+            post.images.map(item => {
+                cloudinary.uploader.destroy(
+                    item.public_id,
+                    {
+                        invalidate: true
+                    }, 
+                    function(error, result) {
+                        console.log(result, error)
+                    }
+                );
+            })
+            
             deleteDataAPI(`post/${post._id}`, auth.token)
         } catch (err) {
             dispatch({

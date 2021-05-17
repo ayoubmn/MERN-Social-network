@@ -33,3 +33,7 @@ export const imageUpload = async (images) => {
     return imgArr;
 
 }
+
+//export const deleteImage = async (images) => {
+//    await cloudinary.uploader.destroy(user.cloudinary_id);
+//}

@@ -45,6 +45,7 @@ const Home = () => {
           <FriendRequests className="item" style={{ position: "relative" }} />
         </div>
       </div>
+
     </div>
   );
 };
