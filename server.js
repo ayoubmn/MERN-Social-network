@@ -3,8 +3,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const db = require("./key").mongoURI;
+/* const db = require("./key").mongoURI;
+ */const URI = process.env.MONGODB_URL;
 const SocketServer = require("./SocketServer");
+const path = require('path')
 
 const app = express();
 
@@ -24,12 +26,17 @@ app.use("/api", require("./routes/api/messageRouter"));
 
 app.use("/api", require("./routes/roomRouter"));
 
-
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 
 
 mongoose
-  .connect(db, {
+  .connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
