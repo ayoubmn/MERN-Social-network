@@ -30,8 +30,8 @@ const EditProfile = ({ setOnEdit}) =>{
     const handleSubmit = e => {
         e.preventDefault()
         dispatch(updateProfileUser({userData, avatar, auth}))
-        window.location.reload();
         setOnEdit(false)
+        //window.location.reload();
     }
 
     return (
