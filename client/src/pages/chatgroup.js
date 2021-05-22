@@ -4,7 +4,7 @@ import axios from "axios";
 
 import io from "socket.io-client-old";
 let socket;
-const CONNECTION_PORT = "localhost:3002/";
+const CONNECTION_PORT = "https://garfield-network.herokuapp.com/" || "localhost:3002/";
 
 const Chatgroup = (props) => {
   const topics = [
@@ -47,7 +47,7 @@ const Chatgroup = (props) => {
       socket.emit("join_room", room);
     }
     axios
-      .get(`http://localhost:5050/api/getRoomMessage?room=${room}`)
+      .get(`/api/getRoomMessage?room=${room}`)
       .then((response) => response.data)
       .then((data) => setMessageList(data))
       .catch((error) => {
@@ -73,7 +73,7 @@ const Chatgroup = (props) => {
       message: message,
     };
     axios
-      .post("http://localhost:5050/api/rooms", msgm)
+      .post("/api/rooms", msgm)
       .then((response) => console.log(response.data))
       .catch((error) => {
         console.log(error.response.data);
