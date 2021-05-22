@@ -5,14 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run server\" \"npm run client\" \"node roomserver\"",
-    "server": "concurrently \"nodemon server.js\" \"node roomserver\" ",
+    "start": "concurrently \"npm run server\" \"npm run client\" ",
+    "server": "concurrently \"nodemon server.js\"  ",
     "client": "npm start --prefix client",
     "server-install": "npm install",
     "client-install": "cd client && npm install",
     "install-all": "concurrently \"npm run server-install\" \"npm run client-install\" ",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"node roomserver\"",
-    "heroku-postbuild": "npm run dev"
+    "heroku-postbuild": "concurrently \"npm run server\" \"npm run client\""
     
   },
   "author": "",
