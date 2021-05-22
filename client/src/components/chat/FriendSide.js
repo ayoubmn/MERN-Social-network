@@ -49,7 +49,7 @@ const FriendSide = () => {
   };
   const asyncFun = async () => {
     await getData(`/api/friends`, myID, auth.token);
-    await getData(`/usr/users`, followersIDs, auth.token);
+    await getData(`/api/users`, followersIDs, auth.token);
   };
   useEffect(() => {
     asyncFun();

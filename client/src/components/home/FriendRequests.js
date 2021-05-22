@@ -16,7 +16,7 @@ const FriendRequests = () => {
     const asyncFun = async () => {
       const data = { data: auth.user.friendsrequest };
       const res = await axios
-        .post("/usr/users", {
+        .post("/api/users", {
           data,
           headers: {
             Authorization: `${auth.token}`,

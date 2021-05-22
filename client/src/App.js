@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshToken());
-    const socket = io("http://localhost:8000", {
+    const socket = io("https://garfield-network.herokuapp.com", {
       transports: ["websocket", "polling", "flashsocket"],
     });
 
@@ -58,11 +58,11 @@ function App() {
           <Route exact path="/" component={auth.token ? Home : Login} />
           <Route exact path="/register" component={Register} />
 
-           <Route
+          <Route
             exact
             path="/:page"
             component={auth.token ? PageRender : Login}
-          /> 
+          />
           <Route
             exact
             path="/:page/:id"
