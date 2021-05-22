@@ -47,7 +47,7 @@ const Chatgroup = (props) => {
       socket.emit("join_room", room);
     }
     axios
-      .get(`/api/getRoomMessage?room=${room}`)
+      .get(`http://localhost:5050/api/getRoomMessage?room=${room}`)
       .then((response) => response.data)
       .then((data) => setMessageList(data))
       .catch((error) => {
@@ -73,7 +73,7 @@ const Chatgroup = (props) => {
       message: message,
     };
     axios
-      .post("/api/rooms", msgm)
+      .post("http://localhost:5050/api/rooms", msgm)
       .then((response) => console.log(response.data))
       .catch((error) => {
         console.log(error.response.data);
