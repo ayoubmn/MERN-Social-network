@@ -1,22 +1,35 @@
 .auth_page{
     width:100%;
     min-height:100vh;
-    background: #fdfdfd;
-
-    position: relative;
+    background-image: url("https://wallpaperaccess.com/full/188646.jpg");
+    position: fixed;
 }
-.auth_page form{
-    background-color: white;
+.auth_page form {
+    background-color: rgba(255, 255, 255, 0.479);
     max-width: 400px;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     padding: 50px 25px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-
+    transform: translate(50%,-50%)
 }
+
+@media only screen and (max-width: 800px) {
+    .auth_page form {
+        background-color: rgba(255, 255, 255, 0.479);
+        width: max-content;
+        border: 2px solid #ddd;
+        padding: 50px 25px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-30%)
+    }
+} 
+
+
 
 .auth_page form .pass{
     position: relative;
@@ -29,3 +42,121 @@
     cursor: pointer;
     opacity: 0.5;
 }
+
+
+.logow
+{
+    margin-top: 25px;
+    font-size: 28px;
+    text-transform: uppercase;
+
+}
+.welcometonet {
+    margin-left: 5M;
+    position:fixed;
+    color: white;
+    font-family: sans-serif;
+}
+
+
+.welcometonet h1
+{
+    letter-spacing: 2px;
+    font-size: 36px;
+    margin-left: 25px;
+    text-transform: uppercase;
+    transform: translate(0%,500%);
+
+}
+.welcometonet p{
+    font-size: 14px;
+    margin-top: 25px;
+    margin-left: 40px;
+    font-family: monospace;
+    transform: translate(0%,1000%);
+}
+
+@media only screen and (max-width: 800px) {
+    .welcometonet {
+        margin-left: 5M;
+        position:relative;
+        color: white;
+        font-family: sans-serif;
+    }
+    .welcometonet h1
+{
+    letter-spacing: 2px;
+    font-size: 16px;
+    text-transform: uppercase;
+    transform: translate(0%,50%);
+
+}
+    .welcometonet p{
+    font-size: 13px;
+    transform: translate(0%,50%);
+
+}
+} 
+/* button*/
+.button {
+    min-width: 30px;
+    min-height: 60px;
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: #313133;
+    background: #4FD1C5;
+  background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+    border: none;
+    box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    }
+  
+ 
+  
+  .button:hover, .button:focus {
+    color: #313133;
+    transform: translateY(-6px);
+  }
+  
+  button:hover::before, button:focus::before {
+    opacity: 1;
+  }
+  
+  button::after {
+    content: '';
+    width: 30px; height: 30px;
+    border-radius: 100%;
+    border: 6px solid #00FFCB;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+  }
+  
+  button:hover::after, button:focus::after {
+    animation: none;
+    display: none;
+  }
+  
+  @keyframes ring {
+    0% {
+      width: 30px;
+      height: 30px;
+      opacity: 1;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+  }
+  
+  

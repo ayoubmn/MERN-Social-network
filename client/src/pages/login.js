@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { login } from "../redux/actions/AuthAction"
 import { useDispatch, useSelector } from "react-redux"
+import ParticleBackground from "../ParticleBackground"
+
 
 const Login = () => {
   const initialState = { email: "", password: "" }
@@ -23,16 +25,22 @@ const Login = () => {
   }
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(userData)
-    dispatch(login(userData))
+/*     console.log(userData)
+ */    dispatch(login(userData))
   }
   return (
-
     <div className="auth_page">
+
+      <div className="welcometonet">
+        <div className="logow">Garfieldo</div>
+        <h1> Welcome to garfield network</h1>
+        <p>  Garfield Network is where you can chat with friends,and express freely!</p>
+      </div>
+      <ParticleBackground />
       <form onSubmit={handleSubmit}>
-        <h3 className="text-uppercase text-center mb-4">Garfield Network</h3>
+        <h3 className="text-uppercase text-center mb-4">Welcome back</h3>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="exampleInputEmail1">Your email </label>
           <input
             type="email"
             className="form-control"
@@ -47,7 +55,7 @@ const Login = () => {
           </small>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">Your password</label>
           <div className="pass">
             <input
               type={typePass ? "text" : "password"}
@@ -62,14 +70,17 @@ const Login = () => {
             </small>
           </div>
         </div>
+{/*         <div  type="submit" className="wrap" disabled={email && password ? false : true}>
+          <button class="button">Login</button>
+        </div> */}
 
-        <button
+    {     <button
           type="submit"
           className="btn btn-dark w-100"
           disabled={email && password ? false : true}
         >
           Login
-        </button>
+        </button> }
         <p className="my-2">
           You don't have an account ?
           <Link to="/register" style={{ color: "crimson" }}>

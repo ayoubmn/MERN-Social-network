@@ -89,6 +89,7 @@ const Chatgroup = (props) => {
       {!loggedIn ? (
         <div className="logIn">
           <div className="inputs">
+          
             {/*  <input
               type="text"
               placeholder="Name..."
@@ -97,6 +98,7 @@ const Chatgroup = (props) => {
               }}
             /> */}
             <h2> Join rooms and meet new people !</h2>
+            
 
             <select
               className="custom-select custom-select-lg mb-3"
@@ -129,13 +131,15 @@ const Chatgroup = (props) => {
           <button id="enterRoom" onClick={connectToRoom}>
             Enter Chat
           </button>
+          
         </div>
+        
       ) : (
         <div className="chatContainer">
           <div>
             <h2 className="welcome">
               Welcome you have joigned the Room :
-              <h2 className="welcometoroom"> {room} </h2>
+              <p style={{color: 'red'}}>{room}</p>
             </h2>
           </div>
           <div className="messages">
@@ -148,11 +152,11 @@ const Chatgroup = (props) => {
                 >
                   <div>
                     <small className="chat_time">
-                      {val.createdAt &&
+                    {val.author}  à  {val.createdAt &&
                         val.createdAt.slice(0, 19).replace("T", " ")}
                     </small>
                     <div className="messageIndividual">
-                      {val.author}: {val.message}
+                       {val.message}
                     </div>
                   </div>
                 </div>
