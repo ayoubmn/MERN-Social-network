@@ -21,12 +21,10 @@ io.on("connection", (socket) => {
   /*console.log(socket.id);*/
 
   socket.on("join_room", (data) => {
-    socket.join(data);
-    /*         
+    socket.join(data);         
     users.push({ id, socketId: socket.id });
     console.log("User Joined Room: " + data);
 
-     */
   });
 
   socket.on("send_message", (data) => {
@@ -35,6 +33,6 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     users = users.filter((user) => user.socketId !== socket.id);
-    /*console.log("USER DISCONNECTED");*/
+    console.log("USER DISCONNECTED");
   });
 });
