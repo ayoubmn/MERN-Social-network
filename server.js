@@ -46,7 +46,7 @@ mongoose
   .then(() => console.log("MongoDB Connected . . ."))
   .catch((err) => console.log(err));
 
-const port = process.env.PORT || 5000;
+const port = 5000 ;
 
 //socketio
 //const socketio = require("socket.io");
