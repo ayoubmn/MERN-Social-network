@@ -83,6 +83,7 @@ const StatusModal = () => {
                             }, 
                             function(error, result) {
                                 console.log(result, error)
+                                return error;
                             }
                         );
                     })
