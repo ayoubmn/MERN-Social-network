@@ -12,7 +12,7 @@ const Search = () => {
   useEffect(() => {
     const getData = async (data, token) => {
       const res = await axios
-        .post(`/usr/searchUser?username=${data}`, {
+        .post(`/api/searchUser?username=${data}`, {
           headers: {
             Authorization: `${token}`,
             "Content-Type": "text/plain",
@@ -40,36 +40,38 @@ const Search = () => {
     setUsers([]);
   };
   return (
-    <form className="search_form" autoComplete="off">
-      <input
-        type="text"
-        name="search"
-        value={search}
-        id="search"
-        autoComplete="off"
-        onChange={(e) =>
-          setSearch(e.target.value.toLowerCase().replace(/ /g, ""))
-        }
-      />
-      <div className="search_icon" style={{ opacity: search ? 0 : 0.3 }}>
-        <span className="material-icons">search</span>
-      </div>
-      <div
-        className="close_search"
-        style={{ opacity: users.length === 0 ? 0 : 1 }}
-        onClick={close}
-      >
-        &times;
-      </div>
-      <div className="users">
-        {search !== "" &&
-          users.map((user) => (
-            <Link key={user._id} to={`/profile/${user._id}`}>
-              <UserCard user={user} border="border" />
-            </Link>
-          ))}
-      </div>
-    </form>
+    <>
+      <form className="search_form" autoComplete="off">
+        <input
+          type="text"
+          name="search"
+          value={search}
+          id="search"
+          autoComplete="off"
+          onChange={(e) =>
+            setSearch(e.target.value.toLowerCase().replace(/ /g, ""))
+          }
+        />
+        <div className="search_icon" style={{ opacity: search ? 0 : 0.3 }}>
+          <span className="material-icons">search</span>
+        </div>
+        <div
+          className="close_search"
+          style={{ opacity: users.length === 0 ? 0 : 1 }}
+          onClick={close}
+        >
+          &times;
+        </div>
+        <div className="users">
+          {search !== "" &&
+            users.map((user) => (
+              <Link key={user._id} to={`/profile/${user._id}`}>
+                <UserCard user={user} border="border" />
+              </Link>
+            ))}
+        </div>
+      </form>
+    </>
   );
 };
 
