@@ -9,6 +9,7 @@ const SocketServer = require("./SocketServer");
 const path = require('path')
 
 const app = express();
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use(express.json());
 app.use(cors());
@@ -65,7 +66,7 @@ const users = [];
 
 io.on("connection", (socket) => {
   SocketServer(socket);
-  //console.log(socket.id + "  new connection");
+  console.log(socket.id + "  new connection");
 });
 io.listen(8000);
 
