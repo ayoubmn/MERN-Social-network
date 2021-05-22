@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-import io from "socket.io-client-old";
+import io from "socket.io-client";
 let socket;
 const CONNECTION_PORT = "https://garfield-network.herokuapp.com/" || "localhost:3002/";
 

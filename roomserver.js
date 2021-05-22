@@ -1,5 +1,5 @@
 const express = require("express");
-const socket = require("socket.io-old");
+const socket = require("socket.io");
 
 let users = [];
 
