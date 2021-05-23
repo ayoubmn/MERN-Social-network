@@ -1,5 +1,5 @@
 const express = require("express");
-const socket = require("socket.io-old");
+const socket = require("socket.io");
 
 let users = [];
 
@@ -8,9 +8,10 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
+const port = process.env.PORT || 5050;
 
-const server = app.listen("3002", () => {
-  console.log("Server Running on Port 3002...");
+const server = app.listen(port, () => {
+  console.log("Server Running on Port 5050...");
 });
 server.timeout = 0;
 
@@ -20,12 +21,10 @@ io.on("connection", (socket) => {
   /*console.log(socket.id);*/
 
   socket.on("join_room", (data) => {
-    socket.join(data);
-    /*         
+    socket.join(data);         
     users.push({ id, socketId: socket.id });
     console.log("User Joined Room: " + data);
 
-     */
   });
 
   socket.on("send_message", (data) => {
@@ -34,6 +33,6 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     users = users.filter((user) => user.socketId !== socket.id);
-    /*console.log("USER DISCONNECTED");*/
+    console.log("USER DISCONNECTED");
   });
 });
