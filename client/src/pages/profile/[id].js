@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoadIcon from "../../images/loading.gif";
 import { getProfileUsers } from "../../redux/actions/profileAction";
 import { useParams } from 'react-router-dom'
+import ParticleBackground from "../../ParticleBackground";
 
 const Profile = () => {
   const { profile, auth } = useSelector((state) => state);
@@ -24,7 +25,8 @@ const Profile = () => {
 
   return (
     <div className="profile">
-
+{/*       <ParticleBackground/>
+ */}
 
      <Info auth={auth} profile={profile} dispatch={dispatch} id={id} />
 
@@ -47,6 +49,7 @@ const Profile = () => {
           }
        </>
       }
+      
 
       
     </div>

@@ -33,8 +33,8 @@ const Login = () => {
 
       <div className="welcometonet">
         <div className="logow">Garfieldo</div>
-        <h1> Welcome to garfield network</h1>
-        <p>  Garfield Network is where you can chat with friends,and express freely!</p>
+        <h1> Welcome to garfieldo</h1>
+        <p>  Garfieldo is network where you can chat with friends,and express freely!</p>
       </div>
       <ParticleBackground />
       <form onSubmit={handleSubmit}>

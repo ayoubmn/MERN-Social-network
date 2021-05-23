@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import ParticleBackground from "../ParticleBackground";
 
 // const production = "https://garfield-network.herokuapp.com";
 // const development = "http://localhost:5050/";
@@ -83,9 +84,13 @@ const Chatgroup = (props) => {
 
   return (
     <div className="Appa">
+{/*           <ParticleBackground/>
+ */}
       {!loggedIn ? (
         <div className="logIn">
+
           <div className="inputs">
+
             {/*  <input
               type="text"
               placeholder="Name..."
@@ -93,7 +98,8 @@ const Chatgroup = (props) => {
                 setUserName(e.target.value);
               }}
             /> */}
-            <h2> Join rooms and meet new people !</h2>
+            <h2 className="joinrooms"> Join rooms and meet new people !</h2>
+
 
             <select
               className="custom-select custom-select-lg mb-3"
@@ -122,11 +128,17 @@ const Chatgroup = (props) => {
                 setRoom(e.target.value);
               }}
             /> */}
+
           </div>
+
+
           <button id="enterRoom" onClick={connectToRoom}>
             Enter Chat
           </button>
+
+
         </div>
+        
       ) : (
         <div className="chatContainer">
           <div>
@@ -165,9 +177,12 @@ const Chatgroup = (props) => {
               }}
             />
             <button onClick={sendMessage}>Send</button>
+
           </div>
+
         </div>
       )}
+
     </div>
   );
 };

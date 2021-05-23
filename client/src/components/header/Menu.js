@@ -39,7 +39,10 @@ const Menu = () => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <Avatar src={auth.user.avatar} size="medium-avatar" />
+            <span style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}>
+              <Avatar src={auth.user.avatar} size="medium-avatar"  />
+            </span>
+            
           </span>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
