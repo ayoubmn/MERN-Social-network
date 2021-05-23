@@ -1,5 +1,5 @@
 const express = require("express");
-const socket = require("socket.io");
+const socket = require("socket.io-old");
 
 let users = [];
 
@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5050;
 
-const server = app.listen(port, () => {
-  console.log("Server Running on Port 5050...");
+const server = app.listen("3002", () => {
+  console.log("Server Running on Port 3002...");
 });
 server.timeout = 0;
 

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-import io from "socket.io-client";
+import io from "socket.io-client-old";
 let socket;
-const CONNECTION_PORT = "https://garfield-network.herokuapp.com/" || "localhost:3002/";
+const CONNECTION_PORT =  "localhost:3002/";
 
 const Chatgroup = (props) => {
   const topics = [
