@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Info from "../../components/profile/Info";
 import Posts from "../../components/profile/Posts";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ const Profile = () => {
   const dispatch= useDispatch()
 
   const { id } = useParams()
+  const {}= useState(false)
 
    useEffect(() => {
      if(profile.ids.every(item => item !== id )){

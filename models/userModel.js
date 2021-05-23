@@ -68,6 +68,12 @@ const userSchema = new mongoose.Schema(
         ref: "user",
       },
     ],
+    saved: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "user",
+      },
+    ],
   },
   {
     timestamps: true,

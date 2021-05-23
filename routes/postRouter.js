@@ -16,4 +16,7 @@ router.patch('/post/:id/unLike', auth, postCtrl.unLikePost)
 
 router.get('/user_posts/:id', auth, postCtrl.getUserPosts)
 
+router.patch('/savePost/:id', auth, postCtrl.savePost)
+router.patch('/unSavePost/:id', auth, postCtrl.unSavePost)
+
 module.exports = router

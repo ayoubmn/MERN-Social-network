@@ -1,5 +1,6 @@
 const Posts = require("../models/postModel");
 const Comments = require('../models/commentModel')
+const Users = require('../models/commentModel')
 
 const postCtrl = {
   createPost: async (req, res) => {
@@ -145,6 +146,35 @@ const postCtrl = {
 
       res.json({msg: 'Deleted Post!'})
       
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  savePost: async (req, res) => {
+    try {
+      const user = await Users.find({_id: req.user._id, saved: req.params.id,});
+
+      if (user.length > 0)
+        return res.status(400).json({ msg: "You saved this already!" });
+
+      const save = await Users.findOneAndUpdate({ _id: req.user._id },{
+          $push: { saved: req.params.id },
+        },{ new: true });
+      if(!save)return res.status(500).json({ msg: "User not found" });
+
+      res.json({ msg: "Saved a Post!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  unSavePost: async (req, res) => {
+    try {
+      const save = await Users.findOneAndUpdate({ _id: req.user._id },{
+          $pull: { saved: req.params.id },
+        },{ new: true });
+      if(!save)return res.status(500).json({ msg: "User not found" });
+
+      res.json({ msg: "unSaved a Post!" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
