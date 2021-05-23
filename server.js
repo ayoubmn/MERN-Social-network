@@ -24,10 +24,12 @@ app.use("/api", require("./routes/authRouter"));
 app.use("/api", require("./routes/userRouter"));
 app.use("/api", require("./routes/postRouter"));
 app.use("/api", require("./routes/commentRouter"));
+app.use("/api", require("./routes/notifRouter"));
 
 app.use("/api", require("./routes/api/friendshipRouter"));
 app.use("/api", require("./routes/api/usersRouter"));
 app.use("/api", require("./routes/api/messageRouter"));
+
 
 app.use("/api", require("./routes/roomRouter"));
 

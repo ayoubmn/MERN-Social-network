@@ -2,6 +2,7 @@ import {GLOBALTYPES} from './globalTypes'
 import {imageUpload} from '../../utils/imageUpload'
 import cloudinary from '../../utils/cloudinary'
 import {postDataAPI, getDataAPI, patchDataAPI, deleteDataAPI} from '../../utils/fetchData'
+import { createNotif, removeNotif } from './NotifAction'
 
 export const POST_TYPES = {
     CREATE_POST: 'CREATE_POST',
@@ -12,7 +13,7 @@ export const POST_TYPES = {
     DELETE_POST: 'DELETE_POST'
 }
 
-export const createPost=({content, images, auth}) => async (dispatch) => {
+export const createPost=({content, images, auth, socket}) => async (dispatch) => {
     let media = []
     try {
         dispatch({type: GLOBALTYPES.ALERT, payload: {loading: true}})
@@ -21,7 +22,17 @@ export const createPost=({content, images, auth}) => async (dispatch) => {
         const res= await postDataAPI('posts', {content,images: media}, auth.token)
         dispatch({type: GLOBALTYPES.ALERT, payload: {loading: false}})
         dispatch({ type:POST_TYPES.CREATE_POST, payload: {...res.data.newPost, user: auth.user}})
-       
+
+        //Notification
+        const msg = {
+            id: res.data.newPost._id,
+            text: 'added a new post!',
+            recipients: res.data.newPost.user.friends,
+            url: `/post/${res.data.newPost._id}`,
+            content, image: media[0].url
+        }
+        dispatch(createNotif({msg, auth, socket}))
+
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
@@ -114,7 +125,7 @@ export const getPost = ({detailPost, id, auth}) => async (dispatch) => {
         }
 }
 
-export const deletePost = ({post, auth}) => async (dispatch) => {
+export const deletePost = ({post, auth, socket}) => async (dispatch) => {
 dispatch({ type: POST_TYPES.DELETE_POST, payload: post})
         try {
             post.images.map(item => {
@@ -129,7 +140,17 @@ dispatch({ type: POST_TYPES.DELETE_POST, payload: post})
                 );
             })
             
-            await deleteDataAPI(`post/${post._id}`, auth.token)
+            const res = await deleteDataAPI(`post/${post._id}`, auth.token)
+
+            //Notification
+            const msg = {
+                id: post._id,
+                text: 'added a new post!',
+                recipients: res.data.newPost.user.friends,
+                url: `/post/${post._id}`
+            }
+            dispatch(removeNotif({msg, auth, socket}))
+
         } catch (err) {
             dispatch({
                 type: GLOBALTYPES.ALERT,
