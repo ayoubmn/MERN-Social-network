@@ -2,6 +2,21 @@ const Posts = require("../models/postModel");
 const Comments = require('../models/commentModel')
 const Users = require('../models/userModel')
 
+class APIfeatures {
+  constructor(query, queryString){
+      this.query = query;
+      this.queryString = queryString;
+  }
+
+  paginating(){
+      const page = this.queryString.page * 1 || 1
+      const limit = this.queryString.limit * 1 || 9
+      const skip = (page - 1) * limit
+      this.query = this.query.skip(skip).limit(limit)
+      return this;
+  }
+}
+
 const postCtrl = {
   createPost: async (req, res) => {
     try {
@@ -178,6 +193,23 @@ const postCtrl = {
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
-  }
+  },
+  getSavedPosts: async (req, res) => {
+    try {
+        const features = new APIfeatures(Posts.find({
+            _id: {$in: req.user.saved}
+        }), req.query).paginating()
+
+        const savedPosts = await features.query.sort("-createdAt")
+
+        res.json({
+            savedPosts,
+            result: savedPosts.length
+        })
+
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
+    }
+},
 };
 module.exports = postCtrl;

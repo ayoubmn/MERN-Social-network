@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Info from "../../components/profile/Info";
 import Posts from "../../components/profile/Posts";
+import Saved from "../../components/profile/Saved";
 import { useSelector, useDispatch } from "react-redux";
 import LoadIcon from "../../images/loading.gif";
 import { getProfileUsers } from "../../redux/actions/profileAction";
@@ -11,7 +12,7 @@ const Profile = () => {
   const dispatch= useDispatch()
 
   const { id } = useParams()
-  const {}= useState(false)
+  const [saveTab, setSaveTab]= useState(false)
 
    useEffect(() => {
      if(profile.ids.every(item => item !== id )){
@@ -26,12 +27,25 @@ const Profile = () => {
 
 
      <Info auth={auth} profile={profile} dispatch={dispatch} id={id} />
-      
+
+     {
+       auth.user._id === id &&
+       <div className="profile_tab">
+         <button className={saveTab ? '' : 'active'} onClick={() => setSaveTab(false)} >Posts</button>
+         <button className={saveTab ? 'active' : ''} onClick={() => setSaveTab(true)} >Saved</button>
+         </div>
+     } 
 
       {profile.loading ? 
         <img className="d-block mx-auto my-4" src={LoadIcon} alt="loading" />
        : 
-       <Posts auth={auth} profile={profile} dispatch={dispatch} id={id} />
+       <>
+          {
+            saveTab?
+            <Saved auth={auth} dispatch={dispatch} />
+            :<Posts auth={auth} profile={profile} dispatch={dispatch} id={id} />
+          }
+       </>
       }
 
       
