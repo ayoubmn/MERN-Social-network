@@ -18,6 +18,11 @@ import { io } from "socket.io-client";
 import { GLOBALTYPES } from "./redux/actions/globalTypes";
 import SocketClient from "./SocketClient";
 
+const production = "https://garfield-network.herokuapp.com";
+const development = "http://localhost:5050/";
+const url = process.env.NODE_ENV === "production" ? production : development;
+const CONNECTION_PORT = url;
+
 function App() {
   const { auth, status, modal } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -32,7 +37,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshToken());
-    const socket = io("https://garfield-network.herokuapp.com", {
+    const socket = io(CONNECTION_PORT, {
       transports: ["websocket", "polling", "flashsocket"],
     });
 

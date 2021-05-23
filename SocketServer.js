@@ -8,12 +8,22 @@ const SocketServer = (socket) => {
     users = users.filter((user) => user.socketId !== socket.id);
     //console.log({ users });
   });
-  
 
   //chat
   socket.on("addMessage", (msg) => {
     const user = users.find((user) => user.id === msg.recipient);
     user && socket.to(`${user.socketId}`).emit("addMessageToClient", msg);
+  });
+
+  //room
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    users.push({ socketId: socket.id });
+    console.log("User Joined Room: " + data);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data.content);
   });
 };
 

@@ -15,6 +15,7 @@ const SocketClient = () => {
       console.log("socketClient " + JSON.stringify(msg));
       dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
     });
+
     return () => socket.off("addMessageToClient");
   }, [socket, dispatch]);
 

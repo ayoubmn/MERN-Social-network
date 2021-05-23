@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-import io from "socket.io-client";
-let socket;
-const production  = 'https://garfield-network.herokuapp.com';
-const development = 'http://localhost:3002/';
-const url = (process.env.NODE_ENV==="production" ? production : development);
-const CONNECTION_PORT = url;
+// const production = "https://garfield-network.herokuapp.com";
+// const development = "http://localhost:5050/";
+// const url = process.env.NODE_ENV === "production" ? production : development;
+// const CONNECTION_PORT = url;
 
 const Chatgroup = (props) => {
   const topics = [
@@ -21,7 +19,7 @@ const Chatgroup = (props) => {
     "study",
     "anime",
   ];
-  const { auth } = useSelector((state) => state);
+  const { auth, socket } = useSelector((state) => state);
   const [loggedIn, setLoggedIn] = useState(false);
 
   const [room, setRoom] = useState(props.topic ? props.topic : "");
@@ -31,10 +29,6 @@ const Chatgroup = (props) => {
 
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-
-  useEffect(() => {
-    socket = io(CONNECTION_PORT);
-  }, []);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -92,7 +86,6 @@ const Chatgroup = (props) => {
       {!loggedIn ? (
         <div className="logIn">
           <div className="inputs">
-          
             {/*  <input
               type="text"
               placeholder="Name..."
@@ -101,7 +94,6 @@ const Chatgroup = (props) => {
               }}
             /> */}
             <h2> Join rooms and meet new people !</h2>
-            
 
             <select
               className="custom-select custom-select-lg mb-3"
@@ -134,15 +126,13 @@ const Chatgroup = (props) => {
           <button id="enterRoom" onClick={connectToRoom}>
             Enter Chat
           </button>
-          
         </div>
-        
       ) : (
         <div className="chatContainer">
           <div>
             <h2 className="welcome">
               Welcome you have joigned the Room :
-              <p style={{color: 'red'}}>{room}</p>
+              <p style={{ color: "red" }}>{room}</p>
             </h2>
           </div>
           <div className="messages">
@@ -155,12 +145,11 @@ const Chatgroup = (props) => {
                 >
                   <div>
                     <small className="chat_time">
-                    {val.author}  à  {val.createdAt &&
+                      {val.author} à{" "}
+                      {val.createdAt &&
                         val.createdAt.slice(0, 19).replace("T", " ")}
                     </small>
-                    <div className="messageIndividual">
-                       {val.message}
-                    </div>
+                    <div className="messageIndividual">{val.message}</div>
                   </div>
                 </div>
               );

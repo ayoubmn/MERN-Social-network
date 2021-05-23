@@ -12,11 +12,11 @@ var express = require("express"),
   app = express(),
   server = require("http").createServer(app),
   io = require("socket.io")(server);
+app.use(cors());
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
 
 //Routes
@@ -71,4 +71,5 @@ io.on("connection", (socket) => {
 app.start = app.listen = function () {
   return server.listen.apply(server, arguments);
 };
+
 app.start(port);
