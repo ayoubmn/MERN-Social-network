@@ -1,6 +1,11 @@
+.search_header {
+  margin-top: 10%;
+  border: 1px;
+  text-align: center;
+}
 .search_form {
   position: relative;
-  margin-top: 10%;
+  margin-top: 2%;
 }
 
 .search_form #search {

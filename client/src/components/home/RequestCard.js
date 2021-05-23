@@ -12,6 +12,7 @@ const RequestCard = ({ user, border }) => {
       auth.token
     );
     setStatus(true);
+    window.location.reload();
   };
   const handleDelete = async () => {
     await postDataAPI(
@@ -20,6 +21,7 @@ const RequestCard = ({ user, border }) => {
       auth.token
     );
     setStatus(true);
+    window.location.reload();
   };
   useEffect(() => {}, [status]);
 
@@ -34,9 +36,20 @@ const RequestCard = ({ user, border }) => {
             <img
               src={user.avatar}
               alt=""
-              style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                marginRight: "4%",
+              }}
             />
-            <div className="ml-1" style={{ transform: "translateY(-3px)" }}>
+            <div
+              className="ml-1"
+              style={{
+                transform: "translateY(-3px)",
+                minWidth: "20%",
+              }}
+            >
               <span className="d-block">{user.username}</span>
               <small style={{ opacity: 0.7 }}>{user.fullname}</small>
             </div>

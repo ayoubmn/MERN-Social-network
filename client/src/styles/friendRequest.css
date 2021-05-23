@@ -1,9 +1,11 @@
 .friendRequests {
   position: relative;
   margin-top: 10%;
+  min-width: 200px;
 }
 
 .request_header {
   border: 1px;
   text-align: center;
+  margin-bottom: 2%;
 }
