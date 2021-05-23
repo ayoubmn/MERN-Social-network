@@ -4,7 +4,10 @@ import axios from "axios";
 
 import io from "socket.io-client-old";
 let socket;
-const CONNECTION_PORT =  "localhost:3002/" || "https://garfield-network.herokuapp.com/" 
+const production  = 'https://garfield-network.herokuapp.com';
+const development = 'http://localhost:3002/';
+const url = (process.env.NODE_ENV==="production" ? production : development);
+const CONNECTION_PORT = url;
 
 const Chatgroup = (props) => {
   const topics = [
