@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/AuthAction";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
 import Avatar from "../Avatar";
-import NotifModal from '../NotifModal'
 
 const Menu = () => {
   const navLinks = [
@@ -13,7 +12,7 @@ const Menu = () => {
     { label: "GroupChat", icon: "groups", path: "/chatgroup" },
   ];
 
-  const { auth, theme, notif } = useSelector((state) => state);
+  const { auth, theme } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
@@ -31,25 +30,14 @@ const Menu = () => {
           </li>
         ))}
 
-        <li className="nav-item dropdown" style={{opacity: 1}}>
-          <span className="nav-link position-relative" id="navbarDropdown"
-            role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
-
-                <span className="material-icons" style={{color: notif.data.length >0 ?'crimson': ''}}>favorite</span>
-
-                <span className="notif-length">{notif.data.length}</span>
-          </span>  
-
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <NotifModal />
-          </div>
-        </li>
-
-        <li className="nav-item dropdown" style={{opacity: 1}}>
+        <li className="nav-item dropdown">
           <span
-            className="nav-link dropdown-toggle"id="navbarDropdown"
-            role="button" data-toggle="dropdown"
-            aria-haspopup="true"aria-expanded="false"
+            className="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             <span style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}>
               <Avatar src={auth.user.avatar} size="medium-avatar"  />
@@ -61,7 +49,8 @@ const Menu = () => {
               Profile
             </Link>
             <label
-              htmlFor="theme" className="dropdown-item"
+              htmlFor="theme"
+              className="dropdown-item"
               onClick={() =>
                 dispatch({
                   type: GLOBALTYPES.THEME,

@@ -43,16 +43,6 @@
   cursor: pointer;
 }
 
-.header .menu .notif_length {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  color: white;
-  font-weight: bold;
-  font-size: 10px;
-}
-
 /*---------Search------*/
 
 .header .search_form {

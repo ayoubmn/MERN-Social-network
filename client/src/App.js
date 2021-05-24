@@ -13,7 +13,6 @@ import Register from "./pages/register";
 import Alert from "./components/alert/Alert";
 import Header from "./components/header/Header";
 import StatusModal from "./components/StatusModal";
-import {getNotifications} from "./redux/actions/NotifAction";
 
 import { io } from "socket.io-client";
 import { GLOBALTYPES } from "./redux/actions/globalTypes";
@@ -33,23 +32,8 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (auth.token) {
-      dispatch(getPosts(auth.token));
-      dispatch(getNotifications(auth.token))}
+    if (auth.token) dispatch(getPosts(auth.token));
   }, [dispatch, auth.token]);
-
-  //notif
-  useEffect(() => {
-    if (!("Notification" in window)) {
-      alert("This browser does not support desktop notification");
-    }
-    else if (Notification.permission === "granted") {}
-    else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then(function (permission) {
-        if (permission === "granted") {}
-      });
-    }
-  },[])
 
   useEffect(() => {
     dispatch(refreshToken());

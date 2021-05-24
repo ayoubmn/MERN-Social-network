@@ -142,7 +142,7 @@ const postCtrl = {
   getPost: async (req, res) => {
     try {
       const post = await Posts.findById(req.params.id)
-      .populate("user likes", "avatar username fullname friends")
+      .populate("user likes", "avatar username fullname")
       .populate({
         path: "comments",
         populate: {
