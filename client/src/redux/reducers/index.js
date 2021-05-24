@@ -10,6 +10,7 @@ import modal from './modalReducer'
 import socket from "./socketReducer";
 import message from "./messageReducer";
 import detailPost from "./detailPostReducer";
+import notif from "./notifReducer";
 
 
 export default combineReducers({
@@ -23,7 +24,8 @@ export default combineReducers({
     modal,
     socket,
     message,
-    detailPost
+    detailPost,
+    notif
 })
 
 
