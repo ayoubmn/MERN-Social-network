@@ -12,8 +12,13 @@ const Menu = () => {
     { label: "Message", icon: "send", path: "/chat" },
     { label: "GroupChat", icon: "groups", path: "/chatgroup" },
   ];
-
+  let nbr = 0
   const { auth, theme, notif } = useSelector((state) => state);
+  if(notif.data.length >0)
+  { 
+    notif.data.forEach(function(item){
+    if(!item.isRead)nbr++
+  })}
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
@@ -35,9 +40,9 @@ const Menu = () => {
           <span className="nav-link position-relative" id="navbarDropdown"
             role="button" data-toggle="dropdown" aria-haspopup="true"aria-expanded="false">
 
-                <span className="material-icons" style={{color: notif.data.length >0 ?'crimson': ''}}>favorite</span>
+                <span className="material-icons" style={{color: nbr >0 ?'crimson': ''}}>favorite</span>
 
-                <span className="notif-length">{notif.data.length}</span>
+                <span className="notif-length">{nbr}</span>
           </span>  
 
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
