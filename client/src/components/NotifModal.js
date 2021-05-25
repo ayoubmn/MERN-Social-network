@@ -52,7 +52,7 @@ const NotifModal = () => {
             <div style={{maxHeight: 'calc(100vh - 200px)', overflow: 'auto'}}>
                 {
                     notif.data.map((msg, index) => (
-                        <div key={index} className="px-2 mb-3" >
+                        <div key={index} className="px-2 mb-3" style={{backgroundColor: msg.text.includes("mention") ?'#D7CCC8': msg.text.includes("like") ? '#FFCA28':'#80D8FF'}} >
                             <Link to={`${msg.url}`} className="d-flex text-dark align-items-center"
                             onClick={() => handleIsRead(msg)}>
                                 <Avatar src={msg.user.avatar} size="big-avatar" />
