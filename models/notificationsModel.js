@@ -8,7 +8,7 @@ const notificationSchema = new mongoose.Schema({
     text: String,
     content: String,
     image: String,
-    isRead: {type: Boolean, defaut: false}
+    isRead: {type: Boolean, default: false}
 }, {
     timestamps: true
 })

@@ -19,35 +19,44 @@ import { GLOBALTYPES } from "./redux/actions/globalTypes";
 import SocketClient from "./SocketClient";
 
 const production = "https://garfield-network.herokuapp.com";
-const development = "http://localhost:5050/";
-const url = process.env.NODE_ENV === "production" ? production : development;
-const CONNECTION_PORT = url;
+const development = "http://localhost:5050";
+const CONNECTION_PORT = process.env.NODE_ENV === "production" ? production : development;
 
 function App() {
   const { auth, status, modal } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshToken());
-  }, [dispatch]);
+    dispatch(refreshToken())
+
+    const socket = io(CONNECTION_PORT, {
+      transports: ["websocket", "polling", "flashsocket"],
+    });
+    socket.on("connect_error", (error) => {
+      console.log("socketio Connection error: " + error);
+    });
+    dispatch({type: GLOBALTYPES.SOCKET, payload: socket})
+    return () => socket.close()
+  },[dispatch])
 
   useEffect(() => {
     if (auth.token) dispatch(getPosts(auth.token));
   }, [dispatch, auth.token]);
 
+  //notif
   useEffect(() => {
-    dispatch(refreshToken());
-    const socket = io(CONNECTION_PORT, {
-      transports: ["websocket", "polling", "flashsocket"],
-    });
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+    else if (Notification.permission === "granted") {}
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {}
+      });
+    }
+  },[])
 
-    socket.on("connect_error", (error) => {
-      console.log("socketio Connection error: " + error);
-    });
-
-    dispatch({ type: GLOBALTYPES.SOCKET, payload: socket });
-    return () => socket.close();
-  }, [dispatch]);
+  
 
   return (
     <Router>

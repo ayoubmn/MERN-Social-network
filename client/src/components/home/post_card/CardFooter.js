@@ -60,7 +60,7 @@ const CardFooter = ({post}) => {
                 </div>
                 {
                     saved?
-                    <i className="fas fa-bookmark" text-info
+                    <i className="fas fa-bookmark text-info" 
                     onClick={()=>dispatch(unSavePost({post, auth}))} />
                     :<i className="far fa-bookmark"
                     onClick={()=>dispatch(savePost({post, auth}))} />

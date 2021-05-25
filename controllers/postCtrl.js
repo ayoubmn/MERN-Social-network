@@ -49,7 +49,7 @@ const postCtrl = {
         user: [...req.user.friends, req.user._id],
       })
         .sort("-createdAt")
-        .populate("user likes", "avatar username fullname")
+        .populate("user likes", "avatar username fullname friends")
         .populate({
           path: "comments",
           populate: {
