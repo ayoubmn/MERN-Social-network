@@ -1,4 +1,5 @@
 let users = [];
+
 const SocketServer = (socket) => {
   socket.on("joinUser", (id) => {
     //console.log("SocketServer " + id);

@@ -1,10 +1,29 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { MESS_TYPES } from "./redux/actions/messageAction";
+import React, { useEffect, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { POST_TYPES } from './redux/actions/postAction'
+import { NOTIF_TYPES } from './redux/actions/NotifAction'
+import { MESS_TYPES } from './redux/actions/messageAction'
 
+import audio from './audio/notif_sound.mp3'
+
+
+const spawnNotification = (body, icon, url, title) => {
+    let options = {
+        body, icon
+    }
+    let n = new Notification(title, options)
+
+    n.onclick = e => {
+        e.preventDefault()
+        window.open(url, '_blank')
+    }
+}
 const SocketClient = () => {
-  const { auth, socket } = useSelector((state) => state);
+  const { auth, socket, notif } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+    const audioRef = useRef()
+
   useEffect(() => {
     socket.emit("joinUser", auth.user._id);
   }, [socket, auth.user._id]);
@@ -20,7 +39,7 @@ const SocketClient = () => {
   }, [socket, dispatch]);
 
 
-     joinUser
+    // joinUser
     useEffect(() => {
         socket.emit('joinUser', auth.user)
     },[socket, auth.user])
