@@ -41,7 +41,7 @@ const Search = () => {
   };
   return (
     <>
-      <div className="search_header">Search users</div>
+      <div className="search_header" style={{color: 'white'}}>Search users</div>
       <form className="search_form" autoComplete="off">
         <input
           type="text"

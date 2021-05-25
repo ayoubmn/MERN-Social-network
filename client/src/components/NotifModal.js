@@ -33,11 +33,11 @@ const NotifModal = () => {
                 <h3>Notification</h3>
                 {
                     notif.sound 
-                    ? <i className="fas fa-bell text-danger" 
+                    ? <i className="fas fa-volume-up text-info" 
                     style={{fontSize: '1.2rem', cursor: 'pointer'}}
                     onClick={handleSound} />
 
-                    : <i className="fas fa-bell-slash text-danger"
+                    : <i className="fas fa-volume-mute text-dark"
                     style={{fontSize: '1.2rem', cursor: 'pointer'}}
                     onClick={handleSound} />
                 }

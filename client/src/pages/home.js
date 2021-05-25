@@ -8,10 +8,10 @@ import FriendRequests from "../components/home/FriendRequests";
 
 const Home = () => {
   const topics = ["sport", "politics", "arts", "gaming", "technology", "fun"];
-  const { homePosts } = useSelector((state) => state);
+  const { homePosts, theme } = useSelector((state) => state);
   return (
     <div className="home row mx-0">
-      <div className="col-sm-3">
+      <div className="col-sm-3" style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`, backgroundImage: 'url("https://wallpaperaccess.com/full/188646.jpg")'}}>
         <div className="chatByTopic bg-light">
           <div className="item">
             <h4>Public chat</h4>
@@ -39,7 +39,7 @@ const Home = () => {
           <Posts />
         )}
       </div>
-      <div className="col-sm-2">
+      <div className="col-sm-3" style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`, backgroundImage: 'url("https://wallpaperaccess.com/full/188646.jpg")'}}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Search className="item" />
           <FriendRequests className="item" style={{ position: "relative" }} />
