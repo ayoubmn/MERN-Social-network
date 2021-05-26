@@ -42,7 +42,7 @@ const Menu = () => {
 
                 <span className="material-icons" style={{color: nbr >0 ?'crimson': ''}}>favorite</span>
 
-                <span className="notif-length">{nbr}</span>
+                <span className="notif-length">{nbr >0 ? nbr : ''}</span>
           </span>  
 
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
