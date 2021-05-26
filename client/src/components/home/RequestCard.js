@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { postDataAPI } from "../../utils/fetchData";
 const RequestCard = ({ user, border }) => {
   const [status, setStatus] = useState(false);
-  const { auth } = useSelector((state) => state);
+  const { auth, theme } = useSelector((state) => state);
 
   const handleAccept = async () => {
     await postDataAPI(
@@ -41,6 +41,7 @@ const RequestCard = ({ user, border }) => {
                 height: "40px",
                 borderRadius: "50%",
                 marginRight: "4%",
+                filter: `${theme ? "invert(1)" : "invert(0)"}`,
               }}
             />
             <div
@@ -53,9 +54,32 @@ const RequestCard = ({ user, border }) => {
               <span className="d-block">{user.username}</span>
               <small style={{ opacity: 0.7 }}>{user.fullname}</small>
             </div>
-            <div className="ml-4" style={{ transform: "translateY(-3px)" }}>
-              <img src="yes.png" alt="none" onClick={handleAccept} />
-              <img src="no.png" alt="none" onClick={handleDelete} />
+            <div
+              className="ml-4"
+              style={{
+                transform: "translateY(-3px)",
+                right: "2px",
+                position: "absolute",
+              }}
+            >
+              <img
+                src="yes.png"
+                style={{
+                  margin: "5px",
+                  filter: `${theme ? "invert(1)" : "invert(0)"}`,
+                }}
+                alt="none"
+                onClick={handleAccept}
+              />
+              <img
+                src="no.png"
+                style={{
+                  margin: "5px",
+                  filter: `${theme ? "invert(1)" : "invert(0)"}`,
+                }}
+                alt="none"
+                onClick={handleDelete}
+              />
             </div>
           </div>
         </div>
