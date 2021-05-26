@@ -5,7 +5,7 @@ import AddFriendBtn from "./AddFriendBtn";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
 import ParticleBackground from "../../ParticleBackground";
 
-const Info = ({id, auth, profile, dispatch}) => {
+const Info = ({ id, auth, profile, dispatch }) => {
 
 
   const [userData, setUserData] = useState([]);
@@ -34,19 +34,19 @@ const Info = ({id, auth, profile, dispatch}) => {
 
       {userData.map((user) => (
         <div className="info_container" key={user._id}>
-                      <div className="testprofi"><ParticleBackground/></div>
+          <div className="testprofi"><ParticleBackground /></div>
 
           <Avatar src={user.avatar} size="supper-avatar" />
           <div className="info_content">
             <div className="info_content_title">
               <h2>{user.username}</h2>
               {user._id === auth.user._id ? (
-                <button
+                <span
                   className="btn btn-outline-info"
                   onClick={() => setOnEdit(true)}
                 >
                   Edit Profile
-                </button>
+                </span>
               ) : (
                 <AddFriendBtn user={user} />
               )}

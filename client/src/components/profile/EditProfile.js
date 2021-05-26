@@ -36,10 +36,10 @@ const EditProfile = ({ setOnEdit}) =>{
 
     return (
         <div className="edit_profile">
-            <button className="btn btn-danger btn_close"
+            <span className="btn btn-danger btn_close"
             onClick={()=> setOnEdit(false)}>
                 Close
-            </button>
+            </span>
             <form onSubmit={handleSubmit}>
                 <div className="info_avatar">
                     <img src={avatar? URL.createObjectURL(avatar):auth.user.avatar} 
@@ -98,7 +98,7 @@ const EditProfile = ({ setOnEdit}) =>{
                     </select>
                 </div>
 
-                <button className="btn btn-info w-100" type="submit">Save</button>
+                <span className="btn btn-info w-100" type="submit">Save</span>
             </form>
         </div>
     );

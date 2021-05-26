@@ -58,32 +58,32 @@ const AddFriendBtn = ({ user }) => {
     <>
       {friends ? (
         <>
-          <button
+          <span
             className="btn btn-outline-danger"
             onClick={handleDeleteFriend}
           >
             Friend
-          </button>
+          </span>
         </>
       ) : (
         <>
           {request ? (
             <>
-              <button
+              <span
                 className="btn btn-outline-danger"
                 onClick={handleDeleteRequest}
               >
                 Request sent
-              </button>
+              </span>
             </>
           ) : (
             <>
-              <button
+              <span
                 className="btn btn-outline-success"
                 onClick={handleAddFriend}
               >
                 Add friend
-              </button>
+              </span>
             </>
           )}
         </>
