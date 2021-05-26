@@ -82,15 +82,24 @@ const Chatgroup = (props) => {
     setMessage(room, messageContent, auth.token);
   };
 
+/* function updateScroll(){
+  var element = document.getElementById("chatContainer");
+  element.scrollTop = element.scrollHeight;
+} */
+/* setTimeout(setInterval(updateScroll,1000), 8000); */
+
+
+
   return (
     <div className="Appa">
-{/*           <ParticleBackground/>
- */}
+
       {!loggedIn ? (
         <div className="logIn">
 
           <div className="inputs">
-
+          <div className="msgparti">
+          <ParticleBackground/>
+          </div>
             {/*  <input
               type="text"
               placeholder="Name..."
@@ -99,8 +108,6 @@ const Chatgroup = (props) => {
               }}
             /> */}
             <h2 className="joinrooms"> Join rooms and meet new people !</h2>
-
-
             <select
               className="custom-select custom-select-lg mb-3"
               key={Math.random}
@@ -130,8 +137,6 @@ const Chatgroup = (props) => {
             /> */}
 
           </div>
-
-
           <button id="enterRoom" onClick={connectToRoom}>
             Enter Chat
           </button>
@@ -140,8 +145,10 @@ const Chatgroup = (props) => {
         </div>
         
       ) : (
-        <div className="chatContainer">
+        <div  className="chatContainer">
+          
           <div>
+          <div >
             <h2 className="welcome">
               Welcome you have joigned the Room :
               <p style={{ color: "red" }}>{room}</p>
@@ -150,7 +157,7 @@ const Chatgroup = (props) => {
           <div className="messages">
             {messageList.map((val, key) => {
               return (
-                <div
+                <div 
                   className="messageContainer"
                   id={val.author === auth.user.username ? "Other" : "you"}
                   key={key}
@@ -167,7 +174,6 @@ const Chatgroup = (props) => {
               );
             })}
           </div>
-
           <div className="messageInputs">
             <input
               type="text"
@@ -180,6 +186,7 @@ const Chatgroup = (props) => {
 
           </div>
 
+        </div>
         </div>
       )}
 

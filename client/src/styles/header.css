@@ -8,6 +8,12 @@
   box-shadow: 0 0 10px #ddd;
   background-image: url("https://wallpaperaccess.com/full/188646.jpg");
 }
+.logocatauth{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+}
 .logocat {
   width: 80px;
   height: 80px;

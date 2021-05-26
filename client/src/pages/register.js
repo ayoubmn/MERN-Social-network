@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import ParticleBackground from '../ParticleBackground'
+import logo from "./../../src/SN-logo.png";
+
 
 import { register } from '../redux/actions/AuthAction'
 const Register = () => {
@@ -39,13 +41,17 @@ const Register = () => {
     return (
         <div className="auth_page">
             <div className="welcometonet">
-                <div className="logow">Garfieldo</div>
-                <h1> Welcome to garfield network</h1>
-                <p>  Garfield Network is where you can express yourself, <br></br> And meet a tons of friends!</p>
-            </div>
+                <div className="logow"><img
+                    className="logocatauth"
+                    src={logo}
+                    alt="logo"
+                ></img>Garfieldo</div>
+                <h1> Welcome to garfieldo</h1>
+                <p className="w-50 p-3">  Garfieldo is network  where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.
+Tumblr is a place to express yourself, discover yourself, and bond over the stuff you love. It's where your interests connect you with your people.</p>            </div>
             <ParticleBackground />
             <form onSubmit={handleSubmit}>
-                <h3 className="text-uppercase text-center mb-4">Garfield Network</h3>
+                <h3 className="text-uppercase text-center mb-4">Garfieldo</h3>
 
                 <div className="form-group">
                     <label htmlFor="fullname">Full Name</label>

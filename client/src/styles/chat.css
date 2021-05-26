@@ -35,7 +35,9 @@
   background: #f8f8f8;
   padding: 0 5px;
 }
-
+.col-md-3{
+  width: auto;
+}
 .message_chat_list {
   width: 100%;
   height: calc(100% - 60px);
@@ -103,6 +105,10 @@
   overflow-y: auto;
   padding: 0 10px;
   background-image: url("../images/chat_bg.jpg");
+}
+.msgparti{
+  position: fixed;
+
 }
 
 .chat_display {

@@ -25,9 +25,6 @@ const Profile = () => {
 
   return (
     <div className="profile">
-{/*       <ParticleBackground/>
- */}
-
      <Info auth={auth} profile={profile} dispatch={dispatch} id={id} />
 
      {

@@ -3,7 +3,9 @@
   width: 100%;
   min-height: 100vh;
 }
-
+.testprofi{
+  position:fixed;
+}
 /*--------Info----------*/
 .info {
   width: 100%;

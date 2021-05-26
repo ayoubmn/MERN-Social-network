@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import { login } from "../redux/actions/AuthAction"
 import { useDispatch, useSelector } from "react-redux"
 import ParticleBackground from "../ParticleBackground"
+import logo from "./../../src/SN-logo.png";
 
 
 const Login = () => {
@@ -29,13 +30,19 @@ const Login = () => {
  */    dispatch(login(userData))
   }
   return (
-    <div className="auth_page">
+    <div className="auth_page ">
 
       <div className="welcometonet">
-        <div className="logow">Garfieldo</div>
+        <div className="logow"><img
+          className="logocatauth"
+          src={logo}
+          alt="logo"
+        ></img>Garfieldo</div>
         <h1> Welcome to garfieldo</h1>
-        <p>  Garfieldo is network where you can chat with friends,and express freely!</p>
+        <p className="w-50 p-3">  Garfieldo is network  where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.
+Tumblr is a place to express yourself, discover yourself, and bond over the stuff you love. It's where your interests connect you with your people.</p>
       </div>
+
       <ParticleBackground />
       <form onSubmit={handleSubmit}>
         <h3 className="text-uppercase text-center mb-4">Welcome back</h3>
@@ -70,17 +77,17 @@ const Login = () => {
             </small>
           </div>
         </div>
-{/*         <div  type="submit" className="wrap" disabled={email && password ? false : true}>
+        {/*         <div  type="submit" className="wrap" disabled={email && password ? false : true}>
           <button class="button">Login</button>
         </div> */}
 
-    {     <button
+        {<button
           type="submit"
           className="btn btn-dark w-100"
           disabled={email && password ? false : true}
         >
           Login
-        </button> }
+        </button>}
         <p className="my-2">
           You don't have an account ?
           <Link to="/register" style={{ color: "crimson" }}>

@@ -3,6 +3,7 @@ import Avatar from "../Avatar";
 import EditProfile from "./EditProfile";
 import AddFriendBtn from "./AddFriendBtn";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
+import ParticleBackground from "../../ParticleBackground";
 
 const Info = ({id, auth, profile, dispatch}) => {
 
@@ -30,8 +31,11 @@ const Info = ({id, auth, profile, dispatch}) => {
 
   return (
     <div className="info">
+
       {userData.map((user) => (
         <div className="info_container" key={user._id}>
+                      <div className="testprofi"><ParticleBackground/></div>
+
           <Avatar src={user.avatar} size="supper-avatar" />
           <div className="info_content">
             <div className="info_content_title">

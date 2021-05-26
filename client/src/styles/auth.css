@@ -68,14 +68,15 @@
     text-transform: uppercase;
     transform: translate(0%,500%);
 
+ 
 }
 .welcometonet p{
-    font-size: 14px;
-    margin-top: 25px;
-    margin-left: 40px;
-    font-family: monospace;
-    transform: translate(0%,1000%);
+  font-size: 16px;
+  transform: translate(0%,180%);
+  position:fixed;
+
 }
+
 
 @media only screen and (max-width: 800px) {
     .welcometonet {
@@ -87,13 +88,13 @@
     .welcometonet h1
 {
     letter-spacing: 2px;
-    font-size: 16px;
+    font-size: 24px;
     text-transform: uppercase;
     transform: translate(0%,50%);
 
 }
     .welcometonet p{
-    font-size: 13px;
+    font-size: 0px;
     transform: translate(0%,50%);
 
 }

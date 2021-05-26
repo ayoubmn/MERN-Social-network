@@ -14,6 +14,7 @@ import Alert from "./components/alert/Alert";
 import Header from "./components/header/Header";
 import StatusModal from "./components/StatusModal";
 import {getNotifications} from "./redux/actions/NotifAction";
+import PrivateRouter from './customRouter/PrivateRouter'
 
 import { io } from "socket.io-client";
 import { GLOBALTYPES } from "./redux/actions/globalTypes";
@@ -74,16 +75,8 @@ function App() {
           <Route exact path="/" component={auth.token ? Home : Login} />
           <Route exact path="/register" component={Register} />
 
-          <Route
-            exact
-            path="/:page"
-            component={auth.token ? PageRender : Login}
-          />
-          <Route
-            exact
-            path="/:page/:id"
-            component={auth.token ? PageRender : Login}
-          />
+          <PrivateRouter exact path="/:page" component={PageRender} />
+          <PrivateRouter exact path="/:page/:id" component={PageRender} />
         </div>
       </div>
     </Router>
