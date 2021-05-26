@@ -4,14 +4,6 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 /* const db = require("./key").mongoURI;
  */
-function wwwRedirect(req, res, next) {
-  if (req.headers.host.slice(0, 4) === 'www.') {
-      var newHost = req.headers.host.slice(4);
-      return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
-  }
-  next();
-};
-
 const URI = process.env.MONGODB_URL;
 const SocketServer = require("./SocketServer");
 const path = require("path");
@@ -21,10 +13,6 @@ var express = require("express"),
   server = require("http").createServer(app),
   io = require("socket.io")(server);
 app.use(cors());
-
-app.set('trust proxy', true);
-app.use(wwwRedirect);
-
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -44,7 +32,6 @@ app.use("/api", require("./routes/api/messageRouter"));
 
 
 app.use("/api", require("./routes/roomRouter"));
-
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
