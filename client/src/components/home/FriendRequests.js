@@ -8,7 +8,7 @@ import axios from "axios";
  * TODO handle delete request
  */
 const FriendRequests = () => {
-  const { auth } = useSelector((state) => state);
+  const { auth,theme } = useSelector((state) => state);
 
   const [requests, setRequests] = useState({});
 
@@ -33,7 +33,7 @@ const FriendRequests = () => {
   }, [auth]);
 
   return (
-    <div className="friendRequests">
+    <div className="friendRequests" style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}>
       <div className="request_header" >Friend requests</div>
       {requests !== undefined &&
         Object.keys(requests).map((i) => (

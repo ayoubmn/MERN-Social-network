@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="home row mx-0">
       <div className="col-sm-3" style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}>
-        <div className="chatByTopic bg-light">
+        <div className="chatByTopic bg-light" style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}>
           <div className="item">
             <h4>Public chat</h4>
             <p>choose a topic to talk about it</p>

@@ -6,7 +6,7 @@ import UserCard from "../chat/UserCard";
 const Search = () => {
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState([]);
-  const { auth } = useSelector((state) => state);
+  const { auth,theme } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Search = () => {
   };
   return (
     <>
-      <div className="search_header">Search users</div>
+      <div className="search_header" style={{filter: `${theme ? 'invert(1)' : 'invert(0)'}`}}>Search users</div>
       <form className="search_form" autoComplete="off">
         <input
           type="text"
