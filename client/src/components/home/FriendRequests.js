@@ -34,7 +34,7 @@ const FriendRequests = () => {
 
   return (
     <div className="friendRequests">
-      <div className="request_header" style={{color: 'white'}}>Friend requests</div>
+      <div className="request_header" >Friend requests</div>
       {requests !== undefined &&
         Object.keys(requests).map((i) => (
           <div key={requests[i]._id}>
